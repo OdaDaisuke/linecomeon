@@ -1,0 +1,290 @@
+@charset 'utf-8';
+body,html {
+	font-family:"游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	margin:0;
+	padding:0;
+}
+img {
+	vertical-align: middle;
+}
+ul,ol {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+* {
+	box-sizing: border-box;
+}
+header.common {
+}
+
+/*
+ * Classes
+ */
+.text-help { color:#555; }
+.text-center { text-align: center; }
+.dib { display: inline-block; }
+.ion-clock {
+	display: block;
+	float: left;
+	font-size: .6rem;
+	line-height: 1.8;
+	margin-right: 4px;
+}
+
+/* caption */
+.caption--form-element {
+	font-weight: bold;
+}
+
+/* margins */
+.mb-2 {margin-bottom: 2rem;}
+.ml-1 { margin-left: 1rem;}
+
+/* btn */
+.btn {
+	background-color:#00b900;
+	border-bottom:2px solid #00a000;
+	border-radius:4px;
+	color:#fff;
+	cursor:pointer;
+	font-family:inherit;
+	font-size: .9rem;
+	font-weight:bold;
+	display: inline-block;
+	margin-bottom: 1rem;
+	outline:none;
+	padding:.5rem .7rem;
+	-webkit-transition:all .2s;
+	-moz-transition:all .2s;
+	transition:all .2s;
+}
+		.btn:hover {
+			background-color:#2fc62f;
+			box-shadow:0 0 0;
+			color:#fff;
+		}
+
+/* container */
+.container {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1025px;
+	padding-top: 100px;
+	width:100%;
+	& > div {
+		display: block;
+		float:left;
+		width:50%;
+	}
+}
+#edit-form {
+	align-items: center;
+	display: flex;
+  justify-content: flex-end;
+	height:100vh;
+	left:0;
+	position: fixed;
+	top:0;
+}
+.screen-wrap {
+	margin-left: 50%;
+}
+
+/* form */
+input[type=text],
+input[type=date] {
+	background-color:#eee;
+	border-radius: 2px;
+	border-style:none;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 1.25rem;
+	margin-left: 1rem;
+	outline: none;
+	padding: 5px;
+}
+input[type=text]:focus {
+	box-shadow: 0 0 5px #aaa inset;
+	cursor: text;
+}
+#preview-date {
+	display: none;
+	margin-top: 1rem;
+	margin-left: 6rem;
+}
+#check-random:not(:checked)~#preview-date {
+	display: block;
+}
+
+/*
+ * line screen
+ */
+.screen {
+	border:1px solid #285588;
+	margin-right:auto;
+	margin-left:auto;
+	width:290px;
+	.screen-header {
+		background-color:#283249;
+		color:#fff;
+	}
+	.mb-header-tp,
+	.mb-header-bt {
+		display: block;
+		height:20px;
+		overflow: hidden;
+		position:relative;
+		width: 100%;
+	}
+	.mb-header-bt {
+		height:30px;
+		padding:0 10px 5px;
+	}
+	.mobile-time {
+		font-size:.72em;
+		left:0;
+		position:absolute;
+		text-align: center;
+		top:0;
+		width:100%;
+	}
+	.radiowave-condition {
+		background-image:url('');
+		display: block;
+		float:left;
+		width:50px;
+	}
+	.battery-condition {
+		display: block;
+		float:right;
+		line-height:1;
+		margin-right: 3px;
+	}
+		.battery-condition > .text {
+			display: inline-block;
+			font-size:.6rem;
+			line-height:1;
+			margin-top: -3px;
+			margin-right: 4px;
+			vertical-align: middle;
+		}
+}
+
+.app-caption-edit {
+	font-size:.8em;
+}
+.app-caption-talk {
+	font-size:.9em;
+	left:0;
+	margin:0;
+	position: absolute;
+	text-align: center;
+	top:0;
+	width:100%;
+}
+
+
+/* talk block */
+.talk-block {
+	display: block;
+	overflow: hidden;
+	width:288px;
+}
+	.talk-block > .inner {
+		position:relative;
+	}
+.last-msg-arrived {
+	color:#888;
+	font-size:.65rem;
+	position:absolute;
+	right:5px;
+	top:1px;
+}
+.profile-image,
+.talk-preview-wrap {
+	display: block;
+	float:left;
+	overflow: hidden;
+}
+.profile-image {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+	width:50px;
+}
+.profile-image img {
+	height: 36px;
+	margin-top: 3px;
+	width:36px;
+}
+.talk-preview-wrap {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 9px;
+	width:238px;
+}
+.talk-preview-from {
+	font-size:1.05rem;
+	margin-top: 2px;
+	margin-bottom: 0;
+}
+.talk-preview {
+	color:#888;
+	line-height:1;
+	margin: 0 0 0 1px;
+}
+
+/* dialog */
+.dialog {
+	background-color:rgba(0,0,0,0.7);
+	display: none;
+	height:100%;
+	left:0;
+	position:absolute;
+	top:0;
+	width:100%;
+	z-index:100;
+}
+	.dialog.visible {
+		display: block;
+	}
+.dialog .close-icon {
+	color:#fff;
+	cursor:pointer;
+	font-size:4rem;
+	left:0;
+	position:absolute;
+	text-align: center;
+	top:1rem;
+	transition:all .2s;
+	width:100%;
+}
+	.dialog .close-icon:hover {
+		font-size:4.5rem;
+	}
+.dialog .content {
+	background-color:#fff;
+	margin-top: 8rem;
+	margin-right:auto;
+	margin-left:auto;
+	max-width:350px;
+	padding:2rem;
+	width:40%;
+}
+
+@media (max-width : 550px) {
+	.screen {
+		min-width:250px;
+		width:100%;
+	}
+	p {
+		font-size:.9rem;
+	}
+	.btn {
+		font-size: 1.5em;
+	}
+	.dialog .content {
+		margin-top: 5.5rem;
+		width:98%;
+	}
+}
