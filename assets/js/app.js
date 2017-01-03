@@ -5,13 +5,19 @@ $(function() {
 	 * line talk screen elements
 	 */
 	var mobile = {
-		$time : $('.mobile-time'),
-		$talk_lists : $('li.talk-block'),
-		$last_msg_arrived : $('.last-msg-arrived')
-	};
-	var $talk_list = $('.talk-lists');
-	var $add_talk_btn = $('#add-talk');
-	var $previewDate = $('#preview-date');
+			$clock : $('.mobile-time'),
+			$talkLists : $('li.talk-block'),
+			$lastMsgArrived : $('.last-msg-arrived')
+		},
+
+		$talkList = $('.talk-lists'),
+		$addTalkBtn = $('#add-talk'),
+
+		$remainingCount = $('#remaining-counts'),
+		$previewDate = $('#preview-date'),
+		$checkDateRandom = $('#check-date-random'),
+
+		addedCount = 0;
 
 	/*
 	 * entire logic
@@ -23,20 +29,18 @@ $(function() {
 				day = d.getDay(),
 				text = d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
 
-			if (day < 10)
-				day = '0' + day;
+			// Make "day" two digits
+			if (day < 10) day = '0' + day;
 
-			mobile.$time.text(text);
+			// set
+			mobile.$clock.text(text);
 			$previewDate.attr('value', d.getFullYear() + '-' + d.getMonth() + 1 + '-' + day);
+			$remainingCount.text(TALK_MAXLEN);
 
 		},
-		talk_add_trigger: function() {
+		talkAddTrigger: function() {
 
-			function add_talk() {
-				var get_random_time = function() {
-					var d = new Date(parseInt(Math.random(0,100000000)*100000000));
-					return d.getHours() + ':' + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
-				};
+			function addTalk() {
 				var name = $('#opponent-name').val();
 				var msg = $('#preview-msg').val();
 				var talksCount = 0;
@@ -48,7 +52,7 @@ $(function() {
 					var $li = $(
 						'<li class="talk-block">' +
 							'<div class="inner">' +
-								'<div class="last-msg-arrived">' + get_random_time() + '</div>' +
+								'<div class="last-msg-arrived">' + getRandomTime() + '</div>' +
 								'<div class="profile-image">' +
 									'<img src="./assets/image/empty_room.png">' +
 								'</div>' +
@@ -59,11 +63,12 @@ $(function() {
 						'</li>'
 					);
 
-					$talk_list.append($li);
+					$talkList.append($li);
 
+					$remainingCount.text(TALK_MAXLEN - (++addedCount));
 					$('#opponent-name').val('');
 					$('#preview-msg').val('');
-					app.talk_delete_trigger();
+					app.talkDeleteTrigger();
 
 				} else if(talksCount >= TALK_MAXLEN) {
 
@@ -76,21 +81,30 @@ $(function() {
 				}
 			}
 
-			$add_talk_btn.click(add_talk);
+			$addTalkBtn.click(addTalk);
 
 		},
-		talk_delete_trigger : function() {
+		talkDeleteTrigger : function() {
 			var $talk = $('.talk-block');
 			$talk.off('click');
+
 			$talk.click(function(e) {
-				var index = $talk.index($(this));
-				var title = $talk.eq(index).find('.talk-preview-from').text();
+				var index = $talk.index($(this)),
+					title = $talk.eq(index).find('.talk-preview-from').text();
+
 				if(confirm(title + 'のトークを削除しますか？')) {
 					$talk.eq(index).remove();
+					$remainingCount.text(TALK_MAXLEN - (--addedCount));
 				}
+
 			});
 		}
 	};
 	app.init();
-	app.talk_add_trigger();
+	app.talkAddTrigger();
 });
+
+function getRandomTime() {
+	var d = new Date(parseInt(Math.random(0,100000000)*100000000));
+	return d.getHours() + ':' + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
+}

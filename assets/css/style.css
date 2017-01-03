@@ -27,6 +27,10 @@ ul, ol {
 .dib {
   display: inline-block; }
 
+#remaining-counts {
+  font-size: 1.5rem;
+  font-weight: bold; }
+
 .ion-clock {
   display: block;
   float: left;
@@ -114,7 +118,7 @@ input[type=text]:focus {
   margin-top: 1rem;
   margin-left: 6rem; }
 
-#check-random:not(:checked) ~ #preview-date {
+#check-date-random:not(:checked) ~ #preview-date {
   display: block; }
 
 /*
@@ -177,12 +181,17 @@ input[type=text]:focus {
 
 /* talk block */
 .talk-block {
+  background-color: #fff;
+  cursor: pointer;
   display: block;
   overflow: hidden;
+  transition: all .2s;
   width: 288px; }
-
-.talk-block > .inner {
-  position: relative; }
+  .talk-block:hover {
+    box-shadow: 0 0 3px -1px #000;
+    transform: scale(1.05); }
+  .talk-block > .inner {
+    position: relative; }
 
 .last-msg-arrived {
   color: #888;
