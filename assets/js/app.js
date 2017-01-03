@@ -32,10 +32,12 @@ $(function() {
 			// Make "day" two digits
 			if (day < 10) day = '0' + day;
 
+
 			// set
 			mobile.$clock.text(text);
 			$previewDate.attr('value', d.getFullYear() + '-' + d.getMonth() + 1 + '-' + day);
 			$remainingCount.text(TALK_MAXLEN);
+			$talkList.sortable();
 
 		},
 		talkAddTrigger: function() {
