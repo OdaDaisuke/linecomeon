@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1">
+	<title></title>
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.4.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+	<header class="common">
+	</header>
+	<main role="main">
+		<div class="container">
+			<div id="edit-form" class="edit-form">
+				<div class="inner">
+					<p>
+						<span class="caption--form-element">相手の名前</span>
+						<input type="text" id="opponent-name" maxlength="15" placeholder="15字以内">
+					</p>
+					<p>
+						<span class="caption--form-element">メッセージ</span>
+						<input type="text" id="preview-msg" maxlength="13" placeholder="13字	以内">
+					</p>
+					<p class="mb-2">
+						<span class="caption--form-element">　受信日時</span>
+						<input type="radio" name="chat-preview-date" class="date-howdoI ml-1" value="prefer" id="check-prefer">
+						<label for="check-prefer">手動設定</label>
+						<input type="radio" name="chat-preview-date" class="date-howdoI" value="random" id="check-random" checked>
+						<label for="check-random">ランダム設定</label>
+						<input type="date" id="preview-date">
+					</p>
+					<p>
+						<a class="btn btn--default" id="add-talk">上の内容で追加する</a>
+					</p>
+				</div>
+			</div>
+			<div class="screen-wrap">
+				<div class="text-center">
+					<!--  使い方が軽く入る s-->
+				</div>
+				<div class="screen">
+					<header class="screen-header">
+						<div class="inner">
+							<div class="mb-header-tp">
+								<div class="radiowave-condition"></div>
+								<div class="mobile-time"></div>
+								<div class="battery-condition">
+									<span class="ion-clock"></span><span class="text">100%</span><span class="ion-battery-full"></span>
+								</div>
+							</div>
+							<div class="mb-header-bt">
+								<span class="app-caption-edit">編集</span>
+								<h4 class="app-caption-talk">トーク</h4>
+								<span class="app-caption-write"></span>
+							</div>
+						</div>
+					</header>
+					<ul class="talk-lists"></ul>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer></footer>
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	  crossorigin="anonymous"></script>
+	<script src="./assets/js/app.js"></script>
+</body>
+</html>
