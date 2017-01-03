@@ -23,12 +23,14 @@
 						<input type="text" name="preview-msg" id="preview-msg" maxlength="13" placeholder="13字	以内">
 					</p>
 					<p class="mb-2">
-						<span class="caption--form-element">　受信日時</span>
-						<input type="radio" name="chat-preview-date" class="date-howdoI ml-1" value="prefer" id="check-date-prefer">
-						<label for="check-date-prefer">手動設定</label>
-						<input type="radio" name="chat-preview-date" class="date-howdoI" value="random" id="check-date-random" checked>
-						<label for="check-date-random">ランダム設定</label>
-						<input type="date" id="preview-date">
+						<span class="caption--form-element">　受信時刻</span>
+						<input type="radio" name="chat-preview-date" class="date-howdoI ml-1" value="prefer" id="check-time-prefer">
+						<label for="check-time-prefer">手動設定</label>
+						<input type="radio" name="chat-preview-date" class="date-howdoI" value="random" id="check-time-random" checked>
+						<label for="check-time-random">ランダム設定</label>
+						<!-- <input type="radio" name="chat-preview-date" class="date-howdoI" value="random" id="check-time-any" checked> -->
+						<!-- <label for="check-time-any">任意のテキスト</label> -->
+						<input type="time" id="preview-date">
 					</p>
 					<p class="text-center">
 						<a class="btn btn--default" id="add-talk">上の内容で追加する</a>

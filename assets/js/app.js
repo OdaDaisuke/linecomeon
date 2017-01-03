@@ -15,7 +15,7 @@ $(function() {
 
 		$remainingCount = $('#remaining-counts'),
 		$previewDate = $('#preview-date'),
-		$checkDateRandom = $('#check-date-random'),
+		$checkTimeRandom = $('#check-time-random'),
 
 		addedCount = 0;
 
@@ -26,16 +26,11 @@ $(function() {
 		init: function() {
 
 			var d = new Date(),
-				day = d.getDay(),
-				text = d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
-
-			// Make "day" two digits
-			if (day < 10) day = '0' + day;
-
+				clockText = d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
 
 			// set
-			mobile.$clock.text(text);
-			$previewDate.attr('value', d.getFullYear() + '-' + d.getMonth() + 1 + '-' + day);
+			mobile.$clock.text(clockText);
+			$previewDate.attr('value', d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes());
 			$remainingCount.text(TALK_MAXLEN);
 			$talkList.sortable();
 
@@ -51,10 +46,17 @@ $(function() {
 				});
 
 				if(name.length > 0 && msg.length > 0 && talksCount < TALK_MAXLEN) {
+
+					var insertData;
+					if($checkTimeRandom.prop('checked'))
+						insertTime = getRandomTime();
+					else
+						insertTime = $previewDate.val();
+
 					var $li = $(
 						'<li class="talk-block">' +
 							'<div class="inner">' +
-								'<div class="last-msg-arrived">' + getRandomTime() + '</div>' +
+								'<div class="last-msg-arrived">' + insertTime + '</div>' +
 								'<div class="profile-image">' +
 									'<img src="./assets/image/empty_room.png">' +
 								'</div>' +
