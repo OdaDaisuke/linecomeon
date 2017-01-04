@@ -43,41 +43,39 @@ $(function() {
 			$opponentName.focus();
 
 		},
+
 		talkAddTrigger: function() {
 
 			function addTalk() {
 
-				var name = $opponentName.val(),
-					msg = $previewMsg.val(),
-					talksCount = 0;
+				var talksCount = $('.talk-block').length;
+				var insertData = {
+						received : null,
+						name : $opponentName.val(),
+						msg : $previewMsg.val()
+					};
 
-				$('.talk-block').each(function() {
-					++talksCount;
-				});
+				if(insertData.name.length > 0 && insertData.msg.length > 0 && talksCount < TALK_MAXLEN) {
 
-				if(name.length > 0 && msg.length > 0 && talksCount < TALK_MAXLEN) {
-
-					var insertData;
 					if($checkTimeRandom.prop('checked'))
-						insertTime = getRandomTime();
+						insertData.received = getRandomTime();
 					else
-						insertTime = $previewDate.val();
+						insertData.received = $previewDate.val();
 
-					var $li = $(
+
+					$(
 						'<li class="talk-block">' +
 							'<div class="inner">' +
-								'<div class="last-msg-arrived">' + insertTime + '</div>' +
+								'<div class="last-msg-arrived">' + insertData.received + '</div>' +
 								'<div class="profile-image">' +
 									'<img src="./assets/image/empty_room.png">' +
 								'</div>' +
 								'<div class="talk-preview-wrap">' +
-									'<h4 class="talk-preview-from">' + name + '</h4>' +
-									'<p class="talk-preview">' + msg + '</p>' +
+									'<h4 class="talk-preview-from">' + insertData.name + '</h4>' +
+									'<p class="talk-preview">' + insertData.msg + '</p>' +
 							'</div>' +
 						'</li>'
-					);
-
-					$talkList.append($li);
+					).appendTo($talkList);
 
 					$remainingCount.text(TALK_MAXLEN - (++addedCount));
 					$opponentName.val('').focus();
@@ -122,7 +120,6 @@ $(function() {
 
 		takeScreenShot:  function() {
 	    html2canvas($screen).then(function(canvas) {
-				alert(2);
 	        var imgData = canvas.toDataURL();
 					$screenShot.attr('src', imgData);
 	    });

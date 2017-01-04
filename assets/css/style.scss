@@ -4,6 +4,8 @@ body,html {
 	margin:0;
 	padding:0;
 }
+body {
+}
 img {
 	vertical-align: middle;
 }
@@ -15,6 +17,9 @@ ul,ol {
 * {
 	box-sizing: border-box;
 }
+a {
+	text-decoration: none;
+}
 
 
 /*
@@ -23,6 +28,7 @@ ul,ol {
 .text-help { color:#555; }
 .text-center { text-align: center; }
 .dib { display: inline-block; }
+.over-hidden { overflow: hidden; }
 #remaining-counts {
 	font-size:1.5rem;
 	font-weight: bold;
@@ -80,7 +86,6 @@ ul,ol {
 	margin-right: auto;
 	margin-left: auto;
 	max-width: 1025px;
-	padding-top: 100px;
 	width:100%;
 	& > div {
 		display: block;
@@ -95,6 +100,7 @@ ul,ol {
 		left:0;
 		position: fixed;
 		top:0;
+		z-index: 1;
 	}
 	& > .screen-wrap {
 		margin-left: 50%;
@@ -139,6 +145,40 @@ input[type=text]:focus {
  * Header
  */
 header.common {
+	background-color: #fff;
+	box-shadow: 0 0 4px -1px #000;
+	margin-bottom: 4rem;
+	position: relative;
+	z-index:4;
+}
+.header-top {
+	background-color:#00b900;
+	padding: .75rem 0;
+}
+.header-bottom {
+	padding: 1rem 0;
+}
+h1 {
+	margin: 0;
+	a {
+		color:#fff;
+	}
+}
+.global-menu {
+	li {
+		display: inline-block;
+		margin: 0;
+		overflow: hidden;
+		a {
+			color:#000;
+			display: block;
+			font-weight: bold;
+			padding: 1rem;
+		}
+		a.active {
+			background-color: #efefef;
+		}
+	}
 }
 
 /*
@@ -263,6 +303,14 @@ header.common {
 		line-height:1;
 		margin: 0 0 0 1px;
 	}
+
+/*
+ * Main
+ */
+main {
+	position: relative;
+	z-index:1;
+}
 
 /*
  * SP

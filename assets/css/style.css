@@ -15,6 +15,9 @@ ul, ol {
 * {
   box-sizing: border-box; }
 
+a {
+  text-decoration: none; }
+
 /*
  * Classes
  */
@@ -26,6 +29,9 @@ ul, ol {
 
 .dib {
   display: inline-block; }
+
+.over-hidden {
+  overflow: hidden; }
 
 #remaining-counts {
   font-size: 1.5rem;
@@ -82,7 +88,6 @@ ul, ol {
   margin-right: auto;
   margin-left: auto;
   max-width: 1025px;
-  padding-top: 100px;
   width: 100%; }
   .container > div {
     display: block;
@@ -95,7 +100,8 @@ ul, ol {
     height: 100vh;
     left: 0;
     position: fixed;
-    top: 0; }
+    top: 0;
+    z-index: 1; }
   .container > .screen-wrap {
     margin-left: 50%; }
 
@@ -132,6 +138,37 @@ input[type=text]:focus {
 /*
  * Header
  */
+header.common {
+  background-color: #fff;
+  box-shadow: 0 0 4px -1px #000;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 4; }
+
+.header-top {
+  background-color: #00b900;
+  padding: .75rem 0; }
+
+.header-bottom {
+  padding: 1rem 0; }
+
+h1 {
+  margin: 0; }
+  h1 a {
+    color: #fff; }
+
+.global-menu li {
+  display: inline-block;
+  margin: 0;
+  overflow: hidden; }
+  .global-menu li a {
+    color: #000;
+    display: block;
+    font-weight: bold;
+    padding: 1rem; }
+  .global-menu li a.active {
+    background-color: #efefef; }
+
 /*
  * line screen
  */
@@ -240,6 +277,13 @@ input[type=text]:focus {
   color: #888;
   line-height: 1;
   margin: 0 0 0 1px; }
+
+/*
+ * Main
+ */
+main {
+  position: relative;
+  z-index: 1; }
 
 /*
  * SP
