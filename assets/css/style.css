@@ -51,8 +51,8 @@ ul, ol {
 
 /* btn */
 .btn {
-  background-color: #00b900;
-  border-bottom: 2px solid #00a000;
+  background-color: #283249;
+  border-bottom: 2px solid #666;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -63,14 +63,19 @@ ul, ol {
   margin-bottom: 1rem;
   outline: none;
   padding: .5rem .7rem;
+  position: relative;
+  top: 0;
   -webkit-transition: all .2s;
   -moz-transition: all .2s;
   transition: all .2s; }
+  .btn:hover {
+    top: 1px; }
 
-.btn:hover {
-  background-color: #2fc62f;
-  box-shadow: 0 0 0;
-  color: #fff; }
+.btn--green {
+  background-color: #00b900;
+  border-bottom: 2px solid #00a000; }
+  .btn--green:hover {
+    background-color: #2fc62f; }
 
 /* container */
 .container {
