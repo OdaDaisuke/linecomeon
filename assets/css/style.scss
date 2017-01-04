@@ -80,18 +80,26 @@ ul,ol {
 		float:left;
 		width:50%;
 	}
+	& > #edit-form {
+		align-items: center;
+		display: flex;
+	  justify-content: flex-end;
+		height:100vh;
+		left:0;
+		position: fixed;
+		top:0;
+	}
+	& > .screen-wrap {
+		margin-left: 50%;
+	}
 }
-#edit-form {
-	align-items: center;
-	display: flex;
-  justify-content: flex-end;
-	height:100vh;
-	left:0;
-	position: fixed;
-	top:0;
-}
-.screen-wrap {
-	margin-left: 50%;
+
+/* screen shot! */
+#screen-dump {
+	display: block;
+	text-align: center;
+	img {
+	}
 }
 
 /* form */
@@ -132,6 +140,7 @@ header.common {
 .screen {
 	border:1px solid #285588;
 	margin-right:auto;
+	margin-bottom: 1rem;
 	margin-left:auto;
 	width:290px;
 	.screen-header {

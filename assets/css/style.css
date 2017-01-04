@@ -83,18 +83,21 @@ ul, ol {
     display: block;
     float: left;
     width: 50%; }
+  .container > #edit-form {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0; }
+  .container > .screen-wrap {
+    margin-left: 50%; }
 
-#edit-form {
-  align-items: center;
-  display: flex;
-  justify-content: flex-end;
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  top: 0; }
-
-.screen-wrap {
-  margin-left: 50%; }
+/* screen shot! */
+#screen-dump {
+  display: block;
+  text-align: center; }
 
 /* form */
 input[type=text],
@@ -122,11 +125,15 @@ input[type=text]:focus {
   display: block; }
 
 /*
+ * Header
+ */
+/*
  * line screen
  */
 .screen {
   border: 1px solid #285588;
   margin-right: auto;
+  margin-bottom: 1rem;
   margin-left: auto;
   width: 290px; }
   .screen .screen-header {
@@ -159,25 +166,23 @@ input[type=text]:focus {
     float: right;
     line-height: 1;
     margin-right: 3px; }
-  .screen .battery-condition > .text {
-    display: inline-block;
-    font-size: .6rem;
-    line-height: 1;
-    margin-top: -3px;
-    margin-right: 4px;
-    vertical-align: middle; }
-
-.app-caption-edit {
-  font-size: .8em; }
-
-.app-caption-talk {
-  font-size: .9em;
-  left: 0;
-  margin: 0;
-  position: absolute;
-  text-align: center;
-  top: 0;
-  width: 100%; }
+    .screen .battery-condition > .text {
+      display: inline-block;
+      font-size: .6rem;
+      line-height: 1;
+      margin-top: -3px;
+      margin-right: 4px;
+      vertical-align: middle; }
+  .screen .app-caption-edit {
+    font-size: .8em; }
+  .screen .app-caption-talk {
+    font-size: .9em;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%; }
 
 /* talk block */
 .talk-block {
@@ -211,11 +216,10 @@ input[type=text]:focus {
   padding-bottom: 5px;
   text-align: center;
   width: 50px; }
-
-.profile-image img {
-  height: 36px;
-  margin-top: 3px;
-  width: 36px; }
+  .profile-image img {
+    height: 36px;
+    margin-top: 3px;
+    width: 36px; }
 
 .talk-preview-wrap {
   border-bottom: 1px solid #eee;
@@ -232,56 +236,8 @@ input[type=text]:focus {
   line-height: 1;
   margin: 0 0 0 1px; }
 
-/* dialog */
-.dialog {
-  background-color: rgba(0, 0, 0, 0.7);
-  display: none;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 100; }
-
-.dialog.visible {
-  display: block; }
-
-.dialog .close-icon {
-  color: #fff;
-  cursor: pointer;
-  font-size: 4rem;
-  left: 0;
-  position: absolute;
-  text-align: center;
-  top: 1rem;
-  transition: all .2s;
-  width: 100%; }
-
-.dialog .close-icon:hover {
-  font-size: 4.5rem; }
-
-.dialog .content {
-  background-color: #fff;
-  margin-top: 8rem;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 350px;
-  padding: 2rem;
-  width: 40%; }
-
-@media (max-width: 550px) {
-  .screen {
-    min-width: 250px;
-    width: 100%; }
-
-  p {
-    font-size: .9rem; }
-
-  .btn {
-    font-size: 1.5em; }
-
-  .dialog .content {
-    margin-top: 5.5rem;
-    width: 98%; } }
+/*
+ * SP
+ */
 
 /*# sourceMappingURL=style.css.map */
