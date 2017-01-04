@@ -15,8 +15,7 @@ ul,ol {
 * {
 	box-sizing: border-box;
 }
-header.common {
-}
+
 
 /*
  * Classes
@@ -122,6 +121,12 @@ input[type=text]:focus {
 }
 
 /*
+ * Header
+ */
+header.common {
+}
+
+/*
  * line screen
  */
 .screen {
@@ -164,8 +169,7 @@ input[type=text]:focus {
 		float:right;
 		line-height:1;
 		margin-right: 3px;
-	}
-		.battery-condition > .text {
+		& > .text {
 			display: inline-block;
 			font-size:.6rem;
 			line-height:1;
@@ -173,21 +177,20 @@ input[type=text]:focus {
 			margin-right: 4px;
 			vertical-align: middle;
 		}
+	}
+	.app-caption-edit {
+		font-size:.8em;
+	}
+	.app-caption-talk {
+		font-size:.9em;
+		left:0;
+		margin:0;
+		position: absolute;
+		text-align: center;
+		top:0;
+		width:100%;
+	}
 }
-
-.app-caption-edit {
-	font-size:.8em;
-}
-.app-caption-talk {
-	font-size:.9em;
-	left:0;
-	margin:0;
-	position: absolute;
-	text-align: center;
-	top:0;
-	width:100%;
-}
-
 
 /* talk block */
 .talk-block {
@@ -223,79 +226,30 @@ input[type=text]:focus {
 	padding-bottom: 5px;
 	text-align: center;
 	width:50px;
-}
-.profile-image img {
-	height: 36px;
-	margin-top: 3px;
-	width:36px;
+	img {
+		height: 36px;
+		margin-top: 3px;
+		width:36px;
+	}
 }
 .talk-preview-wrap {
 	border-bottom: 1px solid #eee;
 	padding-bottom: 9px;
 	width:238px;
 }
-.talk-preview-from {
-	font-size:1.05rem;
-	margin-top: 2px;
-	margin-bottom: 0;
-}
-.talk-preview {
-	color:#888;
-	line-height:1;
-	margin: 0 0 0 1px;
-}
+	.talk-preview-from {
+		font-size:1.05rem;
+		margin-top: 2px;
+		margin-bottom: 0;
+	}
+	.talk-preview {
+		color:#888;
+		line-height:1;
+		margin: 0 0 0 1px;
+	}
 
-/* dialog */
-.dialog {
-	background-color:rgba(0,0,0,0.7);
-	display: none;
-	height:100%;
-	left:0;
-	position:absolute;
-	top:0;
-	width:100%;
-	z-index:100;
-}
-	.dialog.visible {
-		display: block;
-	}
-.dialog .close-icon {
-	color:#fff;
-	cursor:pointer;
-	font-size:4rem;
-	left:0;
-	position:absolute;
-	text-align: center;
-	top:1rem;
-	transition:all .2s;
-	width:100%;
-}
-	.dialog .close-icon:hover {
-		font-size:4.5rem;
-	}
-.dialog .content {
-	background-color:#fff;
-	margin-top: 8rem;
-	margin-right:auto;
-	margin-left:auto;
-	max-width:350px;
-	padding:2rem;
-	width:40%;
-}
-
-@media (max-width : 550px) {
-	.screen {
-		min-width:250px;
-		width:100%;
-	}
-	p {
-		font-size:.9rem;
-	}
-	.btn {
-		font-size: 1.5em;
-	}
-	.dialog .content {
-		margin-top: 5.5rem;
-		width:98%;
-	}
+/*
+ * SP
+ */
+@media (max-width : 600px) {
 }

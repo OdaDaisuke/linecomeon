@@ -10,6 +10,13 @@ $(function() {
 			$lastMsgArrived : $('.last-msg-arrived')
 		},
 
+		$opponentName = $('#opponent-name'),
+		$previewMsg = $('#preview-msg'),
+
+		$screenShot = $('#screen-shot'),
+		$screenShotBtn = $('#screen-shot-btn'),
+
+		$screen = $('.screen');
 		$talkList = $('.talk-lists'),
 		$addTalkBtn = $('#add-talk'),
 
@@ -33,14 +40,17 @@ $(function() {
 			$previewDate.attr('value', d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes());
 			$remainingCount.text(TALK_MAXLEN);
 			$talkList.sortable();
+			$opponentName.focus();
 
 		},
 		talkAddTrigger: function() {
 
 			function addTalk() {
-				var name = $('#opponent-name').val();
-				var msg = $('#preview-msg').val();
-				var talksCount = 0;
+
+				var name = $opponentName.val(),
+					msg = $previewMsg.val(),
+					talksCount = 0;
+
 				$('.talk-block').each(function() {
 					++talksCount;
 				});
@@ -70,8 +80,8 @@ $(function() {
 					$talkList.append($li);
 
 					$remainingCount.text(TALK_MAXLEN - (++addedCount));
-					$('#opponent-name').val('');
-					$('#preview-msg').val('');
+					$opponentName.val('').focus();
+					$previewMsg.val('');
 					app.talkDeleteTrigger();
 
 				} else if(talksCount >= TALK_MAXLEN) {
@@ -102,10 +112,25 @@ $(function() {
 				}
 
 			});
+		},
+
+		screenShotTrigger : function() {
+			$screenShotBtn.click(function() {
+				app.takeScreenShot();
+			});
+		},
+
+		takeScreenShot:  function() {
+	    html2canvas($screen).then(function(canvas) {
+				alert(2);
+	        var imgData = canvas.toDataURL();
+					$screenShot.attr('src', imgData);
+	    });
 		}
 	};
 	app.init();
 	app.talkAddTrigger();
+	app.screenShotTrigger();
 });
 
 function getRandomTime() {
