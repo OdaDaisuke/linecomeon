@@ -267,5 +267,17 @@ header.common {
 /*
  * SP
  */
-@media (max-width : 600px) {
+@media screen and (max-width : 600px) {
+	.s12 { width:100% !important; }
+	.btn {
+		padding:.35rem 1.5rem;
+	}
+	.container > #edit-form {
+		height:auto;
+		justify-content:center;
+		position: relative;
+	}
+	.container > .screen-wrap {
+		margin-left: 0;
+	}
 }
