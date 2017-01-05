@@ -30,8 +30,6 @@ var mobile = {
 
 	$addTalkBtn = $('#add-talk'),
 
-	$chatList = $('.talk-lists'),
-
 	$remainingCount = $('#remaining-counts'),
 	$checkTimeRandom = $('#check-time-random'),
 	$checkOpponent = $('#check-chat-opponent');
@@ -64,8 +62,8 @@ var app = {
 			var talksCount = $('.talk-block').length;
 			var insertData = {
 					received : null,
-					name : $opponentName.val(),
-					msg : $previewMsg.val()
+					name : escape($opponentName.val()),
+					msg : escape($previewMsg.val())
 				};
 
 			if(insertData.name.length > 0 && insertData.msg.length > 0 && talksCount < TALK_MAXLEN) {
@@ -77,7 +75,7 @@ var app = {
 
 
 				$(
-					'<li class="chat-block">' +
+					'<li class="talk-block">' +
 						'<div class="inner">' +
 							'<div class="last-msg-arrived">' + insertData.received + '</div>' +
 							'<div class="profile-image">' +
@@ -88,7 +86,7 @@ var app = {
 								'<p class="talk-preview">' + insertData.msg + '</p>' +
 						'</div>' +
 					'</li>'
-				).appendTo($chatList);
+				).appendTo($talkList);
 
 				$opponentName.val('').focus();
 				$previewMsg.val('');
