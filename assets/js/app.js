@@ -89,7 +89,6 @@ $(function() {
 					$opponentName.val('').focus();
 					$previewMsg.val('');
 					app.setRemaining(++addedCount);
-					app.talkDeleteTrigger();
 					app.dialogTrigger();
 
 				} else if(talksCount >= TALK_MAXLEN) {
@@ -108,7 +107,8 @@ $(function() {
 		},
 
 		dialogTrigger : function() {
-			var $talk = $('.talk-block');
+			var $talk = $('.talk-block'),
+				$current;
 
 			$talk.off('click');
 			dialogInfo.$deleteBtn.off('click');
@@ -122,40 +122,32 @@ $(function() {
 			}
 
 			$talk.click(function(e) {
-				var $current = $(this);
+				$current = $(this);
 
-				dialogInfo.$deleteBtn.off('click');
+				// dialogInfo.$deleteBtn.off('click');
 
 				openDialog();
 
 				dialogInfo.$name.val($current.find('.talk-preview-from').text());
 				dialogInfo.$msg.val($current.find('.talk-preview').text());
-				dialogInfo.$deleteBtn.click(function() {
-					$current.remove();
-					--addedCount;
-					closeDialog();
-					app.setRemaining();
-					app.dialogTrigger();
-				});
+
+			});
+
+			dialogInfo.$deleteBtn.click(function() {
+				$current.remove();
+				--addedCount;
+				app.setRemaining();
+				app.dialogTrigger();
+				closeDialog();
 			});
 
 			dialogInfo.$saveBtn.click(function() {
+				$current.find('.talk-preview-from').text(dialogInfo.$name.val());
+				$current.find('.talk-preview').text(dialogInfo.$msg.val());
+				closeDialog();
 			});
 
 			dialogInfo.$close.click(closeDialog);
-		},
-
-		talkDeleteTrigger : function() {
-			// $talk.click(function(e) {
-			// 	var index = $talk.index($(this)),
-			// 		title = $talk.eq(index).find('.talk-preview-from').text();
-			//
-			// 	if(confirm(title + 'のトークを削除しますか？')) {
-			// 		$talk.eq(index).remove();
-			// 		$remainingCount.text(TALK_MAXLEN - (--addedCount));
-			// 	}
-			//
-			// });
 		},
 
 		screenShotTrigger : function() {
