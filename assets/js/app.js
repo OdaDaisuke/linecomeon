@@ -14,6 +14,7 @@ var mobile = {
 		$name : $('#edit-opponent-name'),
 		$msg : $('#edit-preview-msg'),
 		$saveBtn : $('#edit-save'),
+		$date : $('#edit-preview-date'),
 		$deleteBtn : $('#edit-delete'),
 		$close : $('#dialog-close')
 	},
@@ -61,7 +62,7 @@ var app = {
 
 			var talksCount = $('.talk-block').length;
 			var insertData = {
-					received : null,
+					received : $previewDate.val(),
 					name : escape($opponentName.val()),
 					msg : escape($previewMsg.val())
 				};
@@ -70,9 +71,6 @@ var app = {
 
 				if($checkTimeRandom.prop('checked'))
 					insertData.received = getRandomTime();
-				else
-					insertData.received = $previewDate.val();
-
 
 				$(
 					'<li class="talk-block">' +
@@ -91,7 +89,7 @@ var app = {
 				$opponentName.val('').focus();
 				$previewMsg.val('');
 				app.setRemaining(++addedCount);
-				app.dialogTrigger();
+				app.talkDialogTrigger();
 
 			} else if(talksCount >= TALK_MAXLEN) {
 
@@ -118,7 +116,7 @@ var app = {
 
 			var chatsCount = $('.chat-block').length,
 				insertData = {
-					received : null,
+					received : $previewDate.val(),
 					name : $opponentName.val(),
 					msg : escape($previewMsg.val())
 				};
@@ -127,8 +125,6 @@ var app = {
 
 				if($checkTimeRandom.prop('checked'))
 					insertData.received = getRandomTime();
-				else
-					insertData.received = $previewDate.val();
 
 				var li = '<li class="chat-block">';
 				// 自分が送信したメッセージ
@@ -146,12 +142,13 @@ var app = {
 							'<div class="chat-balloon">' +
 								'<p>' + insertData.msg + '</p>' +
 							'</div>' +
+							'<div><span class="chat-date">' + insertData.received + "</span></div>" +
 						'</div>' +
 					'</li>'
 				).appendTo($chatHistory);
 
 				$previewMsg.val('').focus();
-				app.dialogTrigger();
+				app.chatDialogTrigger();
 
 			} else {
 
@@ -164,22 +161,15 @@ var app = {
 
 	},
 
-	dialogTrigger : function() {
-		var $talk = $('.talk-block'),
+	talkDialogTrigger : function() {
+		var $talks = $('.talk-block'),
 			$current;
 
-		$talk.off('click');
+		$talks.off('click');
 		dialogInfo.$deleteBtn.off('click');
 		dialogInfo.$saveBtn.off('click');
 
-		function openDialog() {
-			dialogInfo.$body.addClass('active');
-		}
-		function closeDialog() {
-			dialogInfo.$body.removeClass('active');
-		}
-
-		$talk.click(function(e) {
+		$talks.click(function(e) {
 
 			$current = $(this);
 			openDialog();
@@ -193,13 +183,46 @@ var app = {
 			$current.remove();
 			--addedCount;
 			app.setRemaining();
-			app.dialogTrigger();
+			app.talkDialogTrigger();
 			closeDialog();
 		});
 
 		dialogInfo.$saveBtn.click(function() {
 			$current.find('.talk-preview-from').text(dialogInfo.$name.val());
 			$current.find('.talk-preview').text(dialogInfo.$msg.val());
+			closeDialog();
+		});
+
+		dialogInfo.$close.click(closeDialog);
+	},
+
+	chatDialogTrigger : function() {
+		var $chats = $('.chat-block'),
+			$current;
+
+		$chats.off('click');
+		dialogInfo.$deleteBtn.off('click');
+		dialogInfo.$saveBtn.off('click');
+
+		$chats.click(function(e) {
+
+			$current = $(this);
+			openDialog();
+
+			dialogInfo.$msg.val(escape($current.find('p').text()));
+			dialogInfo.$date.val($current.find('.chat-date').text());
+
+		});
+
+		dialogInfo.$deleteBtn.click(function() {
+			$current.remove();
+			app.chatDialogTrigger();
+			closeDialog();
+		});
+
+		dialogInfo.$saveBtn.click(function() {
+			$current.find('p').text(escape(dialogInfo.$msg.val()));
+			$current.find('.chat-date').text(dialogInfo.$date.val());
 			closeDialog();
 		});
 
@@ -230,7 +253,12 @@ function getRandomTime() {
 	var d = new Date(parseInt(Math.random(0,100000000)*100000000));
 	return d.getHours() + ':' + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
 }
-
+function openDialog() {
+	dialogInfo.$body.addClass('active');
+}
+function closeDialog() {
+	dialogInfo.$body.removeClass('active');
+}
 function escape(str) {
   var escapeMap = {
     '&': '&amp;',

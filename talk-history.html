@@ -18,7 +18,7 @@
 			<div class="container">
 				<nav class="global">
 					<ul class="global-menu">
-						<li><a href="index.html">履歴一覧</a></li>
+						<li><a href="index.html">トーク一覧</a></li>
 						<li><a href="talk-history.html" class="active">トーク履歴</a></li>
 					</ul>
 				</nav>
@@ -122,6 +122,25 @@
 		</div>
 	</main>
 	<footer></footer>
+	<div id="dialog">
+		<div class="inner">
+			<div class="text-right">
+				<p id="dialog-close" class="close-icon"><span class="ion-close"></span></p>
+			</div>
+			<p class="mb-2">
+				<span class="caption--form-element">メッセージ</span>
+				<textarea id="edit-preview-msg" maxlength="180" placeholder="180字以内"></textarea>
+			</p>
+			<p>
+				<span class="caption--form-element">受送信日時</span>
+				<input type="time" id="edit-preview-date">
+			</p>
+			<div class="text-center">
+				<a href="#" class="btn btn--green" id="edit-save">保存</a>
+				<a href="#" class="btn btn--alart" id="edit-delete">削除</a>
+			</div>
+		</div>
+	</div>
 	<script
 	  src="https://code.jquery.com/jquery-3.1.1.min.js"
 	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -132,7 +151,7 @@
 	<script>
 	window.onload = function() {
 		app.chatAddTrigger();
-		app.dialogTrigger();
+		app.chatDialogTrigger();
 		app.screenShotTrigger();
 	};
 	</script>
