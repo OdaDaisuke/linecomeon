@@ -194,14 +194,17 @@ h1 {
  * line screen
  * iPhone6 screen size - 	375:667 = 290:515.8
  */
+.screen,
+#screen-shot {
+  height: 518.8px;
+  width: 290px; }
+
 .screen {
   border: 1px solid #285588;
-  height: 518.8px;
   margin-right: auto;
   margin-bottom: 1rem;
   margin-left: auto;
-  position: relative;
-  width: 290px; }
+  position: relative; }
   .screen .screen-header {
     background-color: #283249;
     color: #fff;
@@ -294,12 +297,14 @@ h1 {
       border: 1px solid #999;
       right: -10px; }
   .screen .chat-history-wrap {
-    background-image: url("../image/LINE-BG.jpg"); }
+    background-image: url("../image/LINE-BG.jpg");
+    overflow-y: scroll; }
   .screen ul.chat-history {
     overflow: hidden;
     padding-right: 5px;
     padding-left: 5px; }
     .screen ul.chat-history li {
+      cursor: pointer;
       display: -webkit-flex;
       display: -ms-flex;
       display: flex;
@@ -310,15 +315,19 @@ h1 {
       .screen ul.chat-history li.mine {
         flex-direction: column-reverse;
         float: right;
-        width: 185px; }
+        padding-left: 100px;
+        width: 285px; }
         .screen ul.chat-history li.mine .profile-wrap {
           display: none; }
         .screen ul.chat-history li.mine .chat-wrap .chat-balloon {
           background-color: #85e249;
-          color: #1f1f1f; }
+          color: #1f1f1f;
+          float: right; }
       .screen ul.chat-history li .profile-wrap {
         padding-right: 5px; }
         .screen ul.chat-history li .profile-wrap .profile-image {
+          align-items: baseline;
+          height: 28px;
           width: 28px;
           padding-top: 0; }
           .screen ul.chat-history li .profile-wrap .profile-image img {
@@ -328,6 +337,7 @@ h1 {
       .screen ul.chat-history li .chat-wrap .chat-balloon {
         background-color: #fff;
         border-radius: 15px;
+        display: inline-block;
         font-size: .71rem;
         padding: 6px 10px; }
         .screen ul.chat-history li .chat-wrap .chat-balloon a {

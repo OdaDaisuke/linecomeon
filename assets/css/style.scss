@@ -211,14 +211,17 @@ h1 {
  * line screen
  * iPhone6 screen size - 	375:667 = 290:515.8
  */
+.screen,
+#screen-shot {
+	height:518.8px;
+	width:290px;
+}
 .screen {
 	border:1px solid #285588;
-	height:518.8px;
 	margin-right:auto;
 	margin-bottom: 1rem;
 	margin-left:auto;
 	position: relative;
-	width:290px;
 	.screen-header {
 		background-color:#283249;
 		color:#fff;
@@ -330,6 +333,7 @@ h1 {
 	}
 	.chat-history-wrap {
 		background-image:url('../image/LINE-BG.jpg');
+		overflow-y: scroll;
 	}
 	.chat-input-model {
 	}
@@ -338,6 +342,7 @@ h1 {
 		padding-right: 5px;
 		padding-left: 5px;
 		li {
+			cursor: pointer;
 			display: -webkit-flex;
 			display: -ms-flex;
 			display: flex;
@@ -349,18 +354,22 @@ h1 {
 			&.mine {
 				flex-direction: column-reverse;
 				float:right;
-				width:185px;
+				padding-left: 100px;
+		    width: 285px;
 				.profile-wrap {
 					display: none;
 				}
 				.chat-wrap .chat-balloon {
 					background-color: $chatLineColor;
 					color:#1f1f1f;
+					float:right;
 				}
 			}
 			.profile-wrap {
 				padding-right: 5px;
 				.profile-image  {
+			    align-items: baseline;
+					height:28px;
 					width: 28px;
 					padding-top: 0;
 					img {
@@ -374,6 +383,7 @@ h1 {
 				.chat-balloon {
 					background-color: #fff;
 			    border-radius: 15px;
+					display: inline-block;
 			    font-size: .71rem;
 			    padding: 6px 10px;
 					a {

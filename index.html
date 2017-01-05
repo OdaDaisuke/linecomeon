@@ -43,8 +43,6 @@
 						<label for="check-time-prefer">手動設定</label>
 						<input type="radio" name="chat-preview-date" class="date-howdoI" value="random" id="check-time-random" checked>
 						<label for="check-time-random">ランダム設定</label>
-						<!-- <input type="radio" name="chat-preview-date" class="date-howdoI" value="random" id="check-time-any" checked> -->
-						<!-- <label for="check-time-any">任意のテキスト</label> -->
 						<input type="time" id="preview-date">
 					</p>
 					<p class="text-center">
@@ -52,13 +50,9 @@
 						<a class="btn" id="screen-shot-btn"><span class="ion-camera"></span> pngに書き出し</a>
 					</p>
 					<p class="text-center">あと<span id="remaining-counts"></span>人追加できます</p>
-					<!-- <p class="text-help">※「画像長押し>画像を保存」で保存してください</p> -->
 				</form>
 			</div>
 			<div class="screen-wrap s12">
-				<div class="text-center">
-					<!--  使い方が軽く入る s-->
-				</div>
 				<div class="screen">
 					<header class="screen-header">
 						<div class="inner">
@@ -120,5 +114,12 @@
 	<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 	<script src="./assets/js/html2canvas.js"></script>
 	<script src="./assets/js/app.js"></script>
+	<script >
+	window.onload = function() {
+		app.talkAddTrigger();
+		app.dialogTrigger();
+		app.screenShotTrigger();
+	};
+	</script>
 </body>
 </html>

@@ -27,17 +27,17 @@
 	</header>
 	<main role="main">
 		<div class="container">
-			<div id="edit-form" class="edit-form s12">
+			<div id="edit-form" class="edit-form chat-edit-form s12">
 				<form class="inner" method="get" action="#">
 					<p>
 						<span class="caption--form-element">相手の名前</span>
-						<input type="text" name="opponent-name" id="opponent-name" maxlength="10" placeholder="10字以内">
+						<input type="text" name="opponent-name" id="opponent-name" maxlength="10" placeholder="10字以内" value="">
 					</p>
 					<p>
-						<span class="caption--form-element">　　送り主</span>
-						<input type="radio" name="chat-preview-owner" class="ml-1" value="prefer" id="check-chat-mine">
+						<span class="caption--form-element">送信した人</span>
+						<input type="radio" name="chat-owner" class="ml-1" value="prefer" id="check-chat-mine">
 						<label for="check-chat-mine">自分</label>
-						<input type="radio" name="chat-preview-owner" class="" value="random" id="check-chat-opponent" checked>
+						<input type="radio" name="chat-owner" class="" value="random" id="check-chat-opponent" checked>
 						<label for="check-chat-opponent">相手</label>
 					</p>
 					<p>
@@ -56,14 +56,9 @@
 						<a class="btn btn--green" id="add-talk"><span class="ion-plus-round"></span> 追加</a>
 						<a class="btn" id="screen-shot-btn"><span class="ion-camera"></span> pngに書き出し</a>
 					</p>
-					<p class="text-center">あと<span id="remaining-counts"></span>人追加できます</p>
-					<!-- <p class="text-help">※「画像長押し>画像を保存」で保存してください</p> -->
 				</form>
 			</div>
 			<div class="screen-wrap s12">
-				<div class="text-center">
-					<!--  使い方が軽く入る s-->
-				</div>
 				<div class="screen screen--talk-history">
 					<header class="screen-header">
 						<div class="inner">
@@ -77,7 +72,7 @@
 							<div class="mb-header-bt">
 								<span class="app-caption-edit"><span class="ion-chevron-left app-back-arrow"></span></span>
 								<div class="text-center">
-									<h4 class="app-caption-talk"><span class="ion-locked"></span> 相手の名前</h4>
+									<h4 class="app-caption-talk"><span class="ion-locked"></span> <span class="text"></span></h4>
 									<div class="app-dot"></div>
 								</div>
 								<span class="app-caption-write">a</span>
@@ -86,19 +81,7 @@
 					</header>
 					<div class="screen-body chat-history-wrap">
 						<ul class="chat-history">
-							<li>
-								<div class="profile-wrap">
-									<div class="profile-image">
-										<img src="http://localhost/linecomeon/assets/image/empty_room.png" alt="">
-									</div>
-								</div>
-								<div class="chat-wrap">
-									<div class="chat-balloon">
-										<p>あああこんにちはテキストラインチャットの練習サンプルテキストがここに入ります。よ<a href="#">http://aaaasfa.com</a></p>
-									</div>
-								</div>
-							</li>
-							<li>
+							<li class="chat-block">
 								<div class="profile-wrap">
 									<div class="profile-image">
 										<img src="http://localhost/linecomeon/assets/image/empty_room.png" alt="">
@@ -110,7 +93,7 @@
 									</div>
 								</div>
 							</li>
-							<li>
+							<li class="chat-block mine">
 								<div class="profile-wrap">
 									<div class="profile-image">
 										<img src="http://localhost/linecomeon/assets/image/empty_room.png" alt="">
@@ -118,19 +101,7 @@
 								</div>
 								<div class="chat-wrap">
 									<div class="chat-balloon">
-										<p>おk?</p>
-									</div>
-								</div>
-							</li>
-							<li class="mine">
-								<div class="profile-wrap">
-									<div class="profile-image">
-										<img src="http://localhost/linecomeon/assets/image/empty_room.png" alt="">
-									</div>
-								</div>
-								<div class="chat-wrap">
-									<div class="chat-balloon">
-										<p>あああこんにちはテキストラインチャットの練習サンプルテキストがここに入ります。よ<a href="#">http://aaaasfa.com</a></p>
+										<p>あああサンプルテキスト　<a href="#">http://aaaasfa.com</a></p>
 									</div>
 								</div>
 							</li>
@@ -158,5 +129,12 @@
 	<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 	<script src="./assets/js/html2canvas.js"></script>
 	<script src="./assets/js/app.js"></script>
+	<script>
+	window.onload = function() {
+		app.chatAddTrigger();
+		app.dialogTrigger();
+		app.screenShotTrigger();
+	};
+	</script>
 </body>
 </html>

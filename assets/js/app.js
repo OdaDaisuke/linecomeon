@@ -1,180 +1,257 @@
-$(function() {
-	const TALK_MAXLEN = 8;
+const TALK_MAXLEN = 8;
 
-	/*
-	 * line talk screen elements
-	 */
-	var mobile = {
-			$clock : $('.mobile-time'),
-			$talkLists : $('li.talk-block'),
-			$lastMsgArrived : $('.last-msg-arrived')
-		},
+/*
+ * line talk screen elements
+ */
+var mobile = {
+		$screen : $('.screen'),
+		$clock : $('.mobile-time'),
+		$opponentName : $('.app-caption-talk .text')
+	},
 
-		dialogInfo = {
-			$body : $('#dialog'),
-			$name : $('#edit-opponent-name'),
-			$msg : $('#edit-preview-msg'),
-			$saveBtn : $('#edit-save'),
-			$deleteBtn : $('#edit-delete'),
-			$close : $('#dialog-close')
-		},
+	dialogInfo = {
+		$body : $('#dialog'),
+		$name : $('#edit-opponent-name'),
+		$msg : $('#edit-preview-msg'),
+		$saveBtn : $('#edit-save'),
+		$deleteBtn : $('#edit-delete'),
+		$close : $('#dialog-close')
+	},
 
-		$opponentName = $('#opponent-name'),
-		$previewMsg = $('#preview-msg'),
+	$opponentName = $('#opponent-name'),
+	$previewMsg = $('#preview-msg'),
+	$previewDate = $('#preview-date'),
+	$owner = $('[name="chat-owner"]'),
+	$chatHistory = $('.chat-history'),
+	$talkList = $('.talk-lists'),
 
-		$screenShot = $('#screen-shot'),
-		$screenShotBtn = $('#screen-shot-btn'),
+	$screenShot = $('#screen-shot'),
+	$screenShotBtn = $('#screen-shot-btn'),
 
-		$screen = $('.screen');
-		$talkList = $('.talk-lists'),
-		$addTalkBtn = $('#add-talk'),
+	$addTalkBtn = $('#add-talk'),
 
-		$remainingCount = $('#remaining-counts'),
-		$previewDate = $('#preview-date'),
-		$checkTimeRandom = $('#check-time-random'),
+	$chatList = $('.talk-lists'),
 
-		addedCount = 0;
+	$remainingCount = $('#remaining-counts'),
+	$checkTimeRandom = $('#check-time-random'),
+	$checkOpponent = $('#check-chat-opponent');
 
-	/*
-	 * entire logic
-	 */
-	var app = {
-		init: function() {
+	addedCount = 0;
 
-			var d = new Date(),
-				clockText = d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
+/*
+ * entire logic
+ */
+var app = {
+	init: function() {
 
-			// set
-			mobile.$clock.text(clockText);
-			$previewDate.attr('value', d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes());
-			$remainingCount.text(TALK_MAXLEN);
-			$talkList.sortable();
-			$opponentName.focus();
+		var d = new Date(),
+			clockText = d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
 
-		},
+		// set
+		mobile.$clock.text(clockText);
+		$previewDate.attr('value', d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes());
+		$remainingCount.text(TALK_MAXLEN);
+		$talkList.sortable();
+		$chatHistory.sortable();
+		$opponentName.focus();
 
-		talkAddTrigger: function() {
+	},
 
-			function addTalk() {
+	talkAddTrigger: function() {
 
-				var talksCount = $('.talk-block').length;
-				var insertData = {
-						received : null,
-						name : $opponentName.val(),
-						msg : $previewMsg.val()
-					};
+		function addTalk() {
 
-				if(insertData.name.length > 0 && insertData.msg.length > 0 && talksCount < TALK_MAXLEN) {
+			var talksCount = $('.talk-block').length;
+			var insertData = {
+					received : null,
+					name : $opponentName.val(),
+					msg : $previewMsg.val()
+				};
 
-					if($checkTimeRandom.prop('checked'))
-						insertData.received = getRandomTime();
-					else
-						insertData.received = $previewDate.val();
+			if(insertData.name.length > 0 && insertData.msg.length > 0 && talksCount < TALK_MAXLEN) {
+
+				if($checkTimeRandom.prop('checked'))
+					insertData.received = getRandomTime();
+				else
+					insertData.received = $previewDate.val();
 
 
-					$(
-						'<li class="talk-block">' +
-							'<div class="inner">' +
-								'<div class="last-msg-arrived">' + insertData.received + '</div>' +
-								'<div class="profile-image">' +
-									'<img src="./assets/image/empty_room.png">' +
-								'</div>' +
-								'<div class="talk-preview-wrap">' +
-									'<h4 class="talk-preview-from">' + insertData.name + '</h4>' +
-									'<p class="talk-preview">' + insertData.msg + '</p>' +
+				$(
+					'<li class="chat-block">' +
+						'<div class="inner">' +
+							'<div class="last-msg-arrived">' + insertData.received + '</div>' +
+							'<div class="profile-image">' +
+								'<img src="./assets/image/empty_room.png">' +
 							'</div>' +
-						'</li>'
-					).appendTo($talkList);
+							'<div class="talk-preview-wrap">' +
+								'<h4 class="talk-preview-from">' + insertData.name + '</h4>' +
+								'<p class="talk-preview">' + insertData.msg + '</p>' +
+						'</div>' +
+					'</li>'
+				).appendTo($chatList);
 
-					$opponentName.val('').focus();
-					$previewMsg.val('');
-					app.setRemaining(++addedCount);
-					app.dialogTrigger();
-
-				} else if(talksCount >= TALK_MAXLEN) {
-
-					alert('8項目までしか追加できません。');
-
-				} else {
-
-					alert('項目を入力してください。');
-
-				}
-			}
-
-			$addTalkBtn.click(addTalk);
-
-		},
-
-		dialogTrigger : function() {
-			var $talk = $('.talk-block'),
-				$current;
-
-			$talk.off('click');
-			dialogInfo.$deleteBtn.off('click');
-			dialogInfo.$saveBtn.off('click');
-
-			function openDialog() {
-				dialogInfo.$body.addClass('active');
-			}
-			function closeDialog() {
-				dialogInfo.$body.removeClass('active');
-			}
-
-			$talk.click(function(e) {
-				$current = $(this);
-
-				// dialogInfo.$deleteBtn.off('click');
-
-				openDialog();
-
-				dialogInfo.$name.val($current.find('.talk-preview-from').text());
-				dialogInfo.$msg.val($current.find('.talk-preview').text());
-
-			});
-
-			dialogInfo.$deleteBtn.click(function() {
-				$current.remove();
-				--addedCount;
-				app.setRemaining();
+				$opponentName.val('').focus();
+				$previewMsg.val('');
+				app.setRemaining(++addedCount);
 				app.dialogTrigger();
-				closeDialog();
-			});
 
-			dialogInfo.$saveBtn.click(function() {
-				$current.find('.talk-preview-from').text(dialogInfo.$name.val());
-				$current.find('.talk-preview').text(dialogInfo.$msg.val());
-				closeDialog();
-			});
+			} else if(talksCount >= TALK_MAXLEN) {
 
-			dialogInfo.$close.click(closeDialog);
-		},
+				alert('8項目までしか追加できません。');
 
-		screenShotTrigger : function() {
-			$screenShotBtn.click(function() {
-				app.takeScreenShot();
-			});
-		},
+			} else {
 
-		takeScreenShot:  function() {
-	    html2canvas($screen).then(function(canvas) {
-	        var imgData = canvas.toDataURL();
-					$screenShot.attr('src', imgData);
-	    });
-		},
+				alert('項目を入力してください。');
 
-		setRemaining : function() {
-			$remainingCount.text(TALK_MAXLEN - addedCount);
+			}
 		}
 
-	};
-	app.init();
-	app.talkAddTrigger();
-	app.dialogTrigger();
-	app.screenShotTrigger();
-});
+		$addTalkBtn.click(addTalk);
+
+	},
+
+	chatAddTrigger: function() {
+
+		$opponentName.on('keyup', function() {
+			mobile.$opponentName.text(escape($(this).val()));
+		});
+
+		function addChat() {
+
+			var chatsCount = $('.chat-block').length,
+				insertData = {
+					received : null,
+					name : $opponentName.val(),
+					msg : escape($previewMsg.val())
+				};
+
+			if(insertData.msg.length > 0) {
+
+				if($checkTimeRandom.prop('checked'))
+					insertData.received = getRandomTime();
+				else
+					insertData.received = $previewDate.val();
+
+				var li = '<li class="chat-block">';
+				// 自分が送信したメッセージ
+				if(!$checkOpponent.prop('checked'))
+					li = '<li class="chat-block mine">';
+
+				$(
+					li +
+						'<div class="profile-wrap">' +
+							'<div class="profile-image">' +
+								'<img src="./assets/image/empty_room.png">' +
+							'</div>' +
+						'</div>' +
+						'<div class="chat-wrap">' +
+							'<div class="chat-balloon">' +
+								'<p>' + insertData.msg + '</p>' +
+							'</div>' +
+						'</div>' +
+					'</li>'
+				).appendTo($chatHistory);
+
+				$previewMsg.val('').focus();
+				app.dialogTrigger();
+
+			} else {
+
+				alert('項目を入力してください。');
+
+			}
+		}
+
+		$addTalkBtn.click(addChat);
+
+	},
+
+	dialogTrigger : function() {
+		var $talk = $('.talk-block'),
+			$current;
+
+		$talk.off('click');
+		dialogInfo.$deleteBtn.off('click');
+		dialogInfo.$saveBtn.off('click');
+
+		function openDialog() {
+			dialogInfo.$body.addClass('active');
+		}
+		function closeDialog() {
+			dialogInfo.$body.removeClass('active');
+		}
+
+		$talk.click(function(e) {
+
+			$current = $(this);
+			openDialog();
+
+			dialogInfo.$name.val($current.find('.talk-preview-from').text());
+			dialogInfo.$msg.val($current.find('.talk-preview').text());
+
+		});
+
+		dialogInfo.$deleteBtn.click(function() {
+			$current.remove();
+			--addedCount;
+			app.setRemaining();
+			app.dialogTrigger();
+			closeDialog();
+		});
+
+		dialogInfo.$saveBtn.click(function() {
+			$current.find('.talk-preview-from').text(dialogInfo.$name.val());
+			$current.find('.talk-preview').text(dialogInfo.$msg.val());
+			closeDialog();
+		});
+
+		dialogInfo.$close.click(closeDialog);
+	},
+
+	screenShotTrigger : function() {
+		$screenShotBtn.click(function() {
+			app.takeScreenShot();
+		});
+	},
+
+	takeScreenShot:  function() {
+    html2canvas(mobile.$screen).then(function(canvas) {
+        var imgData = canvas.toDataURL();
+				$screenShot.attr('src', imgData);
+    });
+	},
+
+	setRemaining : function() {
+		$remainingCount.text(TALK_MAXLEN - addedCount);
+	}
+
+};
+app.init();
 
 function getRandomTime() {
 	var d = new Date(parseInt(Math.random(0,100000000)*100000000));
 	return d.getHours() + ':' + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
+}
+
+function escape(str) {
+  var escapeMap = {
+    '&': '&amp;',
+    "'": '&#x27;',
+    '`': '&#x60;',
+    '"': '&quot;',
+    '<': '&lt;',
+    '>': '&gt;'
+  };
+  var escapeReg = '[';
+  var reg;
+  for (var p in escapeMap)
+    if (escapeMap.hasOwnProperty(p)) escapeReg += p;
+
+  escapeReg += ']';
+  reg = new RegExp(escapeReg, 'g');
+
+  str = (str === null || str === undefined) ? '' : '' + str;
+  return str.replace(reg, function (match) {
+    return escapeMap[match];
+  });
 }
