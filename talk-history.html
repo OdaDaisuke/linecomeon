@@ -31,11 +31,18 @@
 				<form class="inner" method="get" action="#">
 					<p>
 						<span class="caption--form-element">相手の名前</span>
-						<input type="text" name="opponent-name" id="opponent-name" maxlength="15" placeholder="15字以内">
+						<input type="text" name="opponent-name" id="opponent-name" maxlength="10" placeholder="10字以内">
+					</p>
+					<p>
+						<span class="caption--form-element">　　送り主</span>
+						<input type="radio" name="chat-preview-owner" class="ml-1" value="prefer" id="check-chat-mine">
+						<label for="check-chat-mine">自分</label>
+						<input type="radio" name="chat-preview-owner" class="" value="random" id="check-chat-opponent" checked>
+						<label for="check-chat-opponent">相手</label>
 					</p>
 					<p>
 						<span class="caption--form-element">メッセージ</span>
-						<input type="text" name="preview-msg" id="preview-msg" maxlength="13" placeholder="13字	以内">
+						<textarea name="preview-msg" id="preview-msg" maxlength="180" placeholder="180字以内"></textarea>
 					</p>
 					<p class="mb-2">
 						<span class="caption--form-element">　受信時刻</span>
@@ -43,8 +50,6 @@
 						<label for="check-time-prefer">手動設定</label>
 						<input type="radio" name="chat-preview-date" class="date-howdoI" value="random" id="check-time-random" checked>
 						<label for="check-time-random">ランダム設定</label>
-						<!-- <input type="radio" name="chat-preview-date" class="date-howdoI" value="random" id="check-time-any" checked> -->
-						<!-- <label for="check-time-any">任意のテキスト</label> -->
 						<input type="time" id="preview-date">
 					</p>
 					<p class="text-center">
@@ -59,7 +64,7 @@
 				<div class="text-center">
 					<!--  使い方が軽く入る s-->
 				</div>
-				<div class="screen">
+				<div class="screen screen--talk-history">
 					<header class="screen-header">
 						<div class="inner">
 							<div class="mb-header-tp">
@@ -70,13 +75,74 @@
 								</div>
 							</div>
 							<div class="mb-header-bt">
-								<span class="app-caption-edit">編集</span>
-								<h4 class="app-caption-talk">トーク</h4>
-								<span class="app-caption-write"></span>
+								<span class="app-caption-edit"><span class="ion-chevron-left app-back-arrow"></span></span>
+								<div class="text-center">
+									<h4 class="app-caption-talk"><span class="ion-locked"></span> 相手の名前</h4>
+									<div class="app-dot"></div>
+								</div>
+								<span class="app-caption-write">a</span>
 							</div>
 						</div>
 					</header>
-					<ul class="talk-lists"></ul>
+					<div class="screen-body chat-history-wrap">
+						<ul class="chat-history">
+							<li>
+								<div class="profile-wrap">
+									<div class="profile-image">
+										<img src="http://localhost/linecomeon/assets/image/empty_room.png" alt="">
+									</div>
+								</div>
+								<div class="chat-wrap">
+									<div class="chat-balloon">
+										<p>あああこんにちはテキストラインチャットの練習サンプルテキストがここに入ります。よ<a href="#">http://aaaasfa.com</a></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="profile-wrap">
+									<div class="profile-image">
+										<img src="http://localhost/linecomeon/assets/image/empty_room.png" alt="">
+									</div>
+								</div>
+								<div class="chat-wrap">
+									<div class="chat-balloon">
+										<p>おい</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="profile-wrap">
+									<div class="profile-image">
+										<img src="http://localhost/linecomeon/assets/image/empty_room.png" alt="">
+									</div>
+								</div>
+								<div class="chat-wrap">
+									<div class="chat-balloon">
+										<p>おk?</p>
+									</div>
+								</div>
+							</li>
+							<li class="mine">
+								<div class="profile-wrap">
+									<div class="profile-image">
+										<img src="http://localhost/linecomeon/assets/image/empty_room.png" alt="">
+									</div>
+								</div>
+								<div class="chat-wrap">
+									<div class="chat-balloon">
+										<p>あああこんにちはテキストラインチャットの練習サンプルテキストがここに入ります。よ<a href="#">http://aaaasfa.com</a></p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<footer class="screen-footer">
+						<div class="inner">
+							<span class="ion-plus"></span>
+							<span class="ion-happy-outline"></span>
+							<div class="chat-input-model"></div>
+						</div>
+					</footer>
 				</div>
 				<section id="screen-dump">
 					<img src="" alt="" id="screen-shot">

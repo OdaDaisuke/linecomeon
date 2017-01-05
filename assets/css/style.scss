@@ -36,6 +36,7 @@ a {
  */
 .text-help { color:#555; }
 .text-center { text-align: center; }
+.text-right { text-align: right; }
 .dib { display: inline-block; }
 .over-hidden { overflow: hidden; }
 #remaining-counts {
@@ -57,6 +58,7 @@ a {
 }
 
 /* margins */
+.mb-1 {margin-bottom: 1rem;}
 .mb-2 {margin-bottom: 2rem;}
 .ml-1 { margin-left: 1rem;}
 
@@ -211,6 +213,7 @@ h1 {
  */
 .screen {
 	border:1px solid #285588;
+	height:518.8px;
 	margin-right:auto;
 	margin-bottom: 1rem;
 	margin-left:auto;
@@ -221,6 +224,11 @@ h1 {
 		color:#fff;
 		height:50px;
 	}
+	.screen-body {
+		background-size:cover;
+		height:438px;
+		width:100%;
+	}
 	.screen-footer {
 		align-items: center;
 		background-color:#eef1f4;
@@ -230,10 +238,12 @@ h1 {
 		display: -ms-flex;
 		display: flex;
 		height:30px;
-		// justify-content: center;
 		padding:6px 6px 6px 8px;
 		position: absolute;
 		width:100%;
+		&.screen-footer--chats {
+			height:35px;
+		}
 	}
 	.mb-header-tp,
 	.mb-header-bt {
@@ -320,9 +330,6 @@ h1 {
 	}
 	.chat-history-wrap {
 		background-image:url('../image/LINE-BG.jpg');
-		background-size:cover;
-		height:438px;
-		width:100%;
 	}
 	.chat-input-model {
 	}
@@ -380,9 +387,6 @@ h1 {
 		}
 	}
 }
-.screen--talk-history {
-	height:518.8px;
-}
 
 /* talk block */
 li.talk-block {
@@ -402,21 +406,26 @@ li.talk-block {
 	}
 }
 .last-msg-arrived {
-	color:#888;
-	font-size:.65rem;
-	position:absolute;
-	right:5px;
-	top:1px;
+	color: #888;
+	font-size: .5rem;
+	letter-spacing: 1px;
+	position: absolute;
+	right: 6px;
+	top: 2px;
 }
-.profile-image,
 .talk-preview-wrap {
 	display: block;
 	float:left;
 	overflow: hidden;
 }
 .profile-image {
+	align-items: center;
+	display: flex;
+	float:left;
+  height: 52px;
+	justify-content: center;
 	text-align: center;
-	width:52px;
+  width: 52px;
 	img {
 		border-radius: 50%;
 		height: 41px;
@@ -425,11 +434,11 @@ li.talk-block {
 }
 .talk-preview-wrap {
 	border-bottom: 1px solid #eee;
-	padding: 4px 2px 8px;
+	padding: 8px 2px 14px;
 	width:236px;
 }
 	.talk-preview-from {
-		font-size: .8rem;
+		font-size: .85rem;
 		font-weight: 400;
 		line-height: 1;
 		margin-bottom: 2px;
@@ -448,6 +457,32 @@ li.talk-block {
 main {
 	position: relative;
 	z-index:1;
+}
+#dialog {
+	align-items: center;
+	background-color: rgba(0,0,0,0.5);
+	display: none;
+	height:100%;
+	justify-content: center;
+	position: fixed;
+	top:0;
+	width:100%;
+	z-index: 10;
+	&.active {
+		display: flex;
+	}
+	& > .inner {
+		background-color:#fff;
+		box-shadow: 0 0 5px -3px #000;
+		padding:2rem;
+	}
+	.close-icon {
+		cursor: pointer;
+		display: inline-block;
+		font-size: 2.5rem;
+		margin-top: -0.75rem;
+		margin-bottom: 0;
+	}
 }
 
 /*

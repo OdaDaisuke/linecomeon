@@ -76,7 +76,16 @@
 							</div>
 						</div>
 					</header>
-					<ul class="talk-lists"></ul>
+					<div class="screen-body">
+						<ul class="talk-lists"></ul>
+					</div>
+					<footer class="screen-footer screen-footer--chats">
+						<div class="inner">
+							<ul class="chats-icons">
+								<li><span class="ion-clock"></span></li>
+							</ul>
+						</div>
+					</footer>
 				</div>
 				<section id="screen-dump">
 					<img src="" alt="" id="screen-shot">
@@ -85,6 +94,25 @@
 		</div>
 	</main>
 	<footer></footer>
+	<div id="dialog">
+		<div class="inner">
+			<div class="text-right">
+				<p id="dialog-close" class="close-icon"><span class="ion-close"></span></p>
+			</div>
+			<p>
+				<span class="caption--form-element">相手の名前</span>
+				<input type="text" name="edit-opponent-name" id="edit-opponent-name" maxlength="15" placeholder="15字以内">
+			</p>
+			<p class="mb-2">
+				<span class="caption--form-element">メッセージ</span>
+				<input type="text" name="edit-preview-msg" id="edit-preview-msg" maxlength="13" placeholder="13字以内">
+			</p>
+			<div class="text-center">
+				<a href="#" class="btn btn--green" id="edit-save">保存</a>
+				<a href="#" class="btn btn--alart" id="edit-delete">削除</a>
+			</div>
+		</div>
+	</div>
 	<script
 	  src="https://code.jquery.com/jquery-3.1.1.min.js"
 	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

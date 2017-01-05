@@ -10,6 +10,15 @@ $(function() {
 			$lastMsgArrived : $('.last-msg-arrived')
 		},
 
+		dialogInfo = {
+			$body : $('#dialog'),
+			$name : $('#edit-opponent-name'),
+			$msg : $('#edit-preview-msg'),
+			$saveBtn : $('#edit-save'),
+			$deleteBtn : $('#edit-delete'),
+			$close : $('#dialog-close')
+		},
+
 		$opponentName = $('#opponent-name'),
 		$previewMsg = $('#preview-msg'),
 
@@ -81,6 +90,7 @@ $(function() {
 					$opponentName.val('').focus();
 					$previewMsg.val('');
 					app.talkDeleteTrigger();
+					app.dialogTrigger();
 
 				} else if(talksCount >= TALK_MAXLEN) {
 
@@ -96,20 +106,54 @@ $(function() {
 			$addTalkBtn.click(addTalk);
 
 		},
-		talkDeleteTrigger : function() {
+
+		dialogTrigger : function() {
 			var $talk = $('.talk-block');
+
 			$talk.off('click');
+			dialogInfo.$deleteBtn.off('click');
+			dialogInfo.$saveBtn.off('click');
+
+			function openDialog() {
+				dialogInfo.$body.addClass('active');
+			}
+			function closeDialog() {
+				dialogInfo.$body.removeClass('active');
+			}
 
 			$talk.click(function(e) {
-				var index = $talk.index($(this)),
-					title = $talk.eq(index).find('.talk-preview-from').text();
+				var $current = $(this);
 
-				if(confirm(title + 'のトークを削除しますか？')) {
-					$talk.eq(index).remove();
-					$remainingCount.text(TALK_MAXLEN - (--addedCount));
-				}
+				dialogInfo.$deleteBtn.off('click');
 
+				openDialog();
+
+				dialogInfo.$name.val($current.find('.talk-preview-from').text());
+				dialogInfo.$msg.val($current.find('.talk-preview').text());
+				dialogInfo.$deleteBtn.click(function() {
+					$current.remove();
+					closeDialog();
+					app.dialogTrigger();
+				});
 			});
+
+			dialogInfo.$saveBtn.click(function() {
+			});
+
+			dialogInfo.$close.click(closeDialog);
+		},
+
+		talkDeleteTrigger : function() {
+			// $talk.click(function(e) {
+			// 	var index = $talk.index($(this)),
+			// 		title = $talk.eq(index).find('.talk-preview-from').text();
+			//
+			// 	if(confirm(title + 'のトークを削除しますか？')) {
+			// 		$talk.eq(index).remove();
+			// 		$remainingCount.text(TALK_MAXLEN - (--addedCount));
+			// 	}
+			//
+			// });
 		},
 
 		screenShotTrigger : function() {
@@ -127,6 +171,7 @@ $(function() {
 	};
 	app.init();
 	app.talkAddTrigger();
+	app.dialogTrigger();
 	app.screenShotTrigger();
 });
 
