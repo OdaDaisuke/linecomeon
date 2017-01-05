@@ -86,9 +86,9 @@ $(function() {
 						'</li>'
 					).appendTo($talkList);
 
-					$remainingCount.text(TALK_MAXLEN - (++addedCount));
 					$opponentName.val('').focus();
 					$previewMsg.val('');
+					app.setRemaining(++addedCount);
 					app.talkDeleteTrigger();
 					app.dialogTrigger();
 
@@ -132,7 +132,9 @@ $(function() {
 				dialogInfo.$msg.val($current.find('.talk-preview').text());
 				dialogInfo.$deleteBtn.click(function() {
 					$current.remove();
+					--addedCount;
 					closeDialog();
+					app.setRemaining();
 					app.dialogTrigger();
 				});
 			});
@@ -167,7 +169,12 @@ $(function() {
 	        var imgData = canvas.toDataURL();
 					$screenShot.attr('src', imgData);
 	    });
+		},
+
+		setRemaining : function() {
+			$remainingCount.text(TALK_MAXLEN - addedCount);
 		}
+
 	};
 	app.init();
 	app.talkAddTrigger();
