@@ -128,25 +128,38 @@ var app = {
 				if($checkTimeRandom.prop('checked'))
 					insertData.received = getRandomTime();
 
-				var li = '<li class="chat-block">';
-
 				// 自分が送信するメッセージだったら
-				if(!$checkOpponent.prop('checked'))
-					li = '<li class="chat-block mine">';
-
-				$(li + '<div class="profile-wrap">' +
+				if(!$checkOpponent.prop('checked')) {
+					$('<li class="chat-block mine">' +
+						'<div class="profile-wrap">' +
 							'<div class="profile-image">' +
 								'<img src="./assets/image/empty_room.png">' +
 							'</div>' +
 						'</div>' +
+						'<div class="chat-date"><span>' + insertData.received + "</span></div>" +
 						'<div class="chat-wrap">' +
 							'<div class="chat-balloon">' +
 								'<p>' + insertData.msg + '</p>' +
 							'</div>' +
-							// '<div><span class="chat-date">' + insertData.received + "</span></div>" +
 						'</div>' +
-					'</li>'
-				).appendTo($chatHistory);
+						'</li>'
+					).appendTo($chatHistory);
+				} else {
+					$('<li class="chat-block">' +
+							'<div class="profile-wrap">' +
+								'<div class="profile-image">' +
+									'<img src="./assets/image/empty_room.png">' +
+								'</div>' +
+							'</div>' +
+							'<div class="chat-wrap">' +
+								'<div class="chat-balloon">' +
+									'<p>' + insertData.msg + '</p>' +
+								'</div>' +
+							'</div>' +
+							'<div class="chat-date"><span>' + insertData.received + "</span></div>" +
+						'</li>'
+					).appendTo($chatHistory);
+				}
 
 				$previewMsg.val('').focus();
 				app.chatDialogTrigger();

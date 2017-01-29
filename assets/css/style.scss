@@ -381,9 +381,19 @@ h1 {
 			&:first-child {
 				margin-top: 1rem;
 			}
+			.chat-date {
+				align-items: flex-end;
+				color: #f2f2f2;
+				display: -webkit-flex;
+				display: -ms-flex;
+				display: flex;
+				font-size: .5rem;
+				letter-spacing: .3px;
+				margin:0 5px 2px;
+			}
 			&.mine {
-				flex-direction: column-reverse;
 				float:right;
+				justify-content: flex-end;
 				padding-left: 100px;
 		    width: 285px;
 				.profile-wrap {
