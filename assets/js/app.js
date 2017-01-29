@@ -58,9 +58,9 @@ var app = {
 		// screen shot trigger
 		$screenShotBtn.click(function() {
 			html2canvas(mobile.$screen).then(function(canvas) {
-	        var imgData = canvas.toDataURL();
-					$screenShot.attr('src', imgData);
-	    });
+				var imgData = canvas.toDataURL();
+				$screenShot.attr('src', imgData);
+			});
 		});
 
 	},

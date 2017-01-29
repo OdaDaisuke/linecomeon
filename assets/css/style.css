@@ -477,12 +477,22 @@ main {
   .btn {
     padding: .35rem 1.5rem; }
 
+  h1,
+  .global-menu {
+    text-align: center; }
+
   .container > #edit-form {
     height: auto;
     justify-content: center;
     position: relative; }
 
   .container > .screen-wrap {
-    margin-left: 0; } }
+    margin-left: 0; }
+
+  #dialog > .inner {
+    width: 97%; }
+
+  .screen .mobile-time {
+    font-size: .6rem; } }
 
 /*# sourceMappingURL=style.css.map */
