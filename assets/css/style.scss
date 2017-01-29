@@ -228,7 +228,7 @@ h1 {
 		height:50px;
 		.ion-record {
 			font-size:.4rem;
-			margin:0 -5px 0 3px;
+			margin:0 -6px 0 3px;
 			vertical-align: text-top;
 		}
 		.ion-wifi {
@@ -273,7 +273,7 @@ h1 {
 		padding: 2px;
 	}
 	.mb-header-bt {
-		height:30px;
+		height:25px;
 		padding:0 10px;
 	}
 	.search-box {
@@ -560,5 +560,8 @@ main {
 	}
 	.screen .mobile-time {
 		font-size:.6rem;
+	}
+	.screen ul.chat-history li .chat-date {
+		font-size:.4rem;
 	}
 }

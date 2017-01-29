@@ -212,7 +212,7 @@ h1 {
     height: 50px; }
     .screen .screen-header .ion-record {
       font-size: .4rem;
-      margin: 0 -5px 0 3px;
+      margin: 0 -6px 0 3px;
       vertical-align: text-top; }
     .screen .screen-header .ion-wifi {
       font-size: .7rem;
@@ -248,7 +248,7 @@ h1 {
   .screen .mb-header-tp {
     padding: 2px; }
   .screen .mb-header-bt {
-    height: 30px;
+    height: 25px;
     padding: 0 10px; }
   .screen .search-box {
     padding: 0 7px; }
@@ -493,6 +493,9 @@ main {
     width: 97%; }
 
   .screen .mobile-time {
-    font-size: .6rem; } }
+    font-size: .6rem; }
+
+  .screen ul.chat-history li .chat-date {
+    font-size: .4rem; } }
 
 /*# sourceMappingURL=style.css.map */
