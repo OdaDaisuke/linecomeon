@@ -26,7 +26,8 @@ a {
  * Classes
  */
 .text-help {
-  color: #555; }
+  color: #6f6f6f;
+  font-weight: bold; }
 
 .text-center {
   text-align: center; }
@@ -208,7 +209,7 @@ h1 {
   .screen .screen-header {
     background-color: #283249;
     color: #fff;
-    height: 75px; }
+    height: 50px; }
     .screen .screen-header .ion-record {
       font-size: .4rem;
       margin: 0 -5px 0 3px;
@@ -217,6 +218,8 @@ h1 {
       font-size: .7rem;
       margin-left: 5px;
       vertical-align: super; }
+  .screen.screen--chats .screen-header {
+    height: 75px; }
   .screen .screen-body {
     background-size: cover;
     height: 438px;

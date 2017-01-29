@@ -50,10 +50,11 @@
 						<a class="btn" id="screen-shot-btn"><span class="ion-camera"></span> pngに書き出し</a>
 					</p>
 					<p class="text-center">あと<span id="remaining-counts"></span>人追加できます</p>
+					<p class="text-center text-help">※ドラッグで並べ替え、タップで編集できます。</p>
 				</form>
 			</div>
 			<div class="screen-wrap s12">
-				<div class="screen">
+				<div class="screen screen--chats">
 					<header class="screen-header">
 						<div class="inner">
 							<div class="mb-header-tp">
@@ -127,5 +128,8 @@
 	<script src="./assets/js/html2canvas.js"></script>
 	<script src="./assets/js/function.js"></script>
 	<script src="./assets/js/app.js"></script>
+	<script>
+	app.talkAddTrigger();
+	</script>
 </body>
 </html>

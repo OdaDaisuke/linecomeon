@@ -54,7 +54,6 @@ var app = {
 		$chatHistory.sortable();
 		$opponentName.focus();
 
-		app.talkAddTrigger();
 		app.talkDialogTrigger();
 		// screen shot trigger
 		$screenShotBtn.click(function() {
@@ -68,8 +67,7 @@ var app = {
 
 	talkAddTrigger: function() {
 
-		function addTalk() {
-
+		$addTalkBtn.click(function() {
 			var talksCount = $('.talk-block').length;
 			var insertData = {
 					received : $previewDate.val(),
@@ -105,9 +103,8 @@ var app = {
 				alert('8項目までしか追加できません。');
 			else
 				alert('項目を入力してください。');
-		}
 
-		$addTalkBtn.click(addTalk);
+		});
 
 	},
 
