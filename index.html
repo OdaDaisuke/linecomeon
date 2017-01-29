@@ -57,7 +57,14 @@
 					<header class="screen-header">
 						<div class="inner">
 							<div class="mb-header-tp">
-								<div class="radiowave-condition"></div>
+								<div class="radiowave-condition">
+									<span class="ion-record"></span>
+									<span class="ion-record"></span>
+									<span class="ion-record"></span>
+									<span class="ion-record"></span>
+									<span class="ion-record"></span>
+									<span class="ion-wifi"></span>
+								</div>
 								<div class="mobile-time"></div>
 								<div class="battery-condition">
 									<span class="ion-clock"></span><span class="text">100%</span><span class="ion-battery-full"></span>
@@ -67,6 +74,11 @@
 								<span class="app-caption-edit">編集</span>
 								<h4 class="app-caption-talk">トーク</h4>
 								<span class="app-caption-write"></span>
+							</div>
+							<div class="search-box">
+								<div class="inner">
+									<p><span class="ion-search"></span>　Stickers, Friends, Chats</p>
+								</div>
 							</div>
 						</div>
 					</header>
@@ -113,13 +125,7 @@
 	  crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 	<script src="./assets/js/html2canvas.js"></script>
+	<script src="./assets/js/function.js"></script>
 	<script src="./assets/js/app.js"></script>
-	<script >
-	window.onload = function() {
-		app.talkAddTrigger();
-		app.talkDialogTrigger();
-		app.screenShotTrigger();
-	};
-	</script>
 </body>
 </html>

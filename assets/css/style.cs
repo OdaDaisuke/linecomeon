@@ -208,15 +208,7 @@ h1 {
   .screen .screen-header {
     background-color: #283249;
     color: #fff;
-    height: 75px; }
-    .screen .screen-header .ion-record {
-      font-size: .4rem;
-      margin: 0 -5px 0 3px;
-      vertical-align: text-top; }
-    .screen .screen-header .ion-wifi {
-      font-size: .7rem;
-      margin-left: 5px;
-      vertical-align: super; }
+    height: 50px; }
   .screen .screen-body {
     background-size: cover;
     height: 438px;
@@ -242,22 +234,9 @@ h1 {
     overflow: hidden;
     position: relative;
     width: 100%; }
-  .screen .mb-header-tp {
-    padding: 2px; }
   .screen .mb-header-bt {
     height: 30px;
-    padding: 0 10px; }
-  .screen .search-box {
-    padding: 0 7px; }
-    .screen .search-box .inner {
-      background-color: #384256;
-      border-radius: 3px;
-      padding: 2px 0;
-      text-align: center; }
-      .screen .search-box .inner p {
-        color: #8f8f8f;
-        font-size: .7rem;
-        margin: 0; }
+    padding: 0 10px 5px; }
   .screen .mobile-time {
     font-size: .72em;
     left: 0;
@@ -269,7 +248,7 @@ h1 {
     background-image: url("");
     display: block;
     float: left;
-    width: 60px; }
+    width: 50px; }
   .screen .battery-condition {
     display: block;
     float: right;
@@ -473,4 +452,4 @@ main {
   .container > .screen-wrap {
     margin-left: 0; } }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.cs.map */

@@ -225,7 +225,17 @@ h1 {
 	.screen-header {
 		background-color:#283249;
 		color:#fff;
-		height:50px;
+		height:75px;
+		.ion-record {
+			font-size:.4rem;
+			margin:0 -5px 0 3px;
+			vertical-align: text-top;
+		}
+		.ion-wifi {
+			font-size:.7rem;
+			margin-left: 5px;
+			vertical-align: super;
+		}
 	}
 	.screen-body {
 		background-size:cover;
@@ -256,9 +266,26 @@ h1 {
 		position:relative;
 		width: 100%;
 	}
+	.mb-header-tp {
+		padding: 2px;
+	}
 	.mb-header-bt {
 		height:30px;
-		padding:0 10px 5px;
+		padding:0 10px;
+	}
+	.search-box {
+		padding:0 7px;
+		.inner {
+			background-color:#384256;
+			border-radius: 3px;
+			padding:2px 0;
+			text-align: center;
+			p {
+				color:#8f8f8f;
+				font-size:.7rem;
+				margin: 0;
+			}
+		}
 	}
 	.mobile-time {
 		font-size:.72em;
@@ -272,7 +299,7 @@ h1 {
 		background-image:url('');
 		display: block;
 		float:left;
-		width:50px;
+		width:60px;
 	}
 	.battery-condition {
 		display: block;

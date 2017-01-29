@@ -26,14 +26,14 @@ var mobile = {
 	$chatHistory = $('.chat-history'),
 	$talkList = $('.talk-lists'),
 
+	$checkTimeRandom = $('#check-time-random'),
+	$checkOpponent = $('#check-chat-opponent');
+
 	$screenShot = $('#screen-shot'),
 	$screenShotBtn = $('#screen-shot-btn'),
-
 	$addTalkBtn = $('#add-talk'),
 
 	$remainingCount = $('#remaining-counts'),
-	$checkTimeRandom = $('#check-time-random'),
-	$checkOpponent = $('#check-chat-opponent');
 
 	addedCount = 0;
 
@@ -46,13 +46,23 @@ var app = {
 		var d = new Date(),
 			clockText = d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
 
-		// set
+		// set default value
 		mobile.$clock.text(clockText);
 		$previewDate.attr('value', d.getHours() + ":" + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes());
 		$remainingCount.text(TALK_MAXLEN);
 		$talkList.sortable();
 		$chatHistory.sortable();
 		$opponentName.focus();
+
+		app.talkAddTrigger();
+		app.talkDialogTrigger();
+		// screen shot trigger
+		$screenShotBtn.click(function() {
+			html2canvas(mobile.$screen).then(function(canvas) {
+	        var imgData = canvas.toDataURL();
+					$screenShot.attr('src', imgData);
+	    });
+		});
 
 	},
 
@@ -88,18 +98,13 @@ var app = {
 
 				$opponentName.val('').focus();
 				$previewMsg.val('');
-				app.setRemaining(++addedCount);
+				setRemaining(++addedCount);
 				app.talkDialogTrigger();
 
-			} else if(talksCount >= TALK_MAXLEN) {
-
+			} else if(talksCount >= TALK_MAXLEN)
 				alert('8項目までしか追加できません。');
-
-			} else {
-
+			else
 				alert('項目を入力してください。');
-
-			}
 		}
 
 		$addTalkBtn.click(addTalk);
@@ -112,7 +117,7 @@ var app = {
 			mobile.$opponentName.text(escape($(this).val()));
 		});
 
-		function addChat() {
+		$addTalkBtn.click(function() {
 
 			var chatsCount = $('.chat-block').length,
 				insertData = {
@@ -127,13 +132,12 @@ var app = {
 					insertData.received = getRandomTime();
 
 				var li = '<li class="chat-block">';
-				// 自分が送信したメッセージ
+
+				// 自分が送信するメッセージだったら
 				if(!$checkOpponent.prop('checked'))
 					li = '<li class="chat-block mine">';
 
-				$(
-					li +
-						'<div class="profile-wrap">' +
+				$(li + '<div class="profile-wrap">' +
 							'<div class="profile-image">' +
 								'<img src="./assets/image/empty_room.png">' +
 							'</div>' +
@@ -142,7 +146,7 @@ var app = {
 							'<div class="chat-balloon">' +
 								'<p>' + insertData.msg + '</p>' +
 							'</div>' +
-							'<div><span class="chat-date">' + insertData.received + "</span></div>" +
+							// '<div><span class="chat-date">' + insertData.received + "</span></div>" +
 						'</div>' +
 					'</li>'
 				).appendTo($chatHistory);
@@ -150,14 +154,9 @@ var app = {
 				$previewMsg.val('').focus();
 				app.chatDialogTrigger();
 
-			} else {
+			} else alert('項目を入力してください。');
 
-				alert('項目を入力してください。');
-
-			}
-		}
-
-		$addTalkBtn.click(addChat);
+		});
 
 	},
 
@@ -170,19 +169,16 @@ var app = {
 		dialogInfo.$saveBtn.off('click');
 
 		$talks.click(function(e) {
-
 			$current = $(this);
 			openDialog();
-
 			dialogInfo.$name.val($current.find('.talk-preview-from').text());
 			dialogInfo.$msg.val($current.find('.talk-preview').text());
-
 		});
 
 		dialogInfo.$deleteBtn.click(function() {
 			$current.remove();
 			--addedCount;
-			app.setRemaining();
+			setRemaining();
 			app.talkDialogTrigger();
 			closeDialog();
 		});
@@ -200,26 +196,27 @@ var app = {
 		var $chats = $('.chat-block'),
 			$current;
 
+		//イベントリセット
 		$chats.off('click');
 		dialogInfo.$deleteBtn.off('click');
 		dialogInfo.$saveBtn.off('click');
 
+		//項目クリック時のトリガー
 		$chats.click(function(e) {
-
 			$current = $(this);
 			openDialog();
-
 			dialogInfo.$msg.val(escape($current.find('p').text()));
 			dialogInfo.$date.val($current.find('.chat-date').text());
-
 		});
 
+		//項目削除ボタントリガー
 		dialogInfo.$deleteBtn.click(function() {
 			$current.remove();
 			app.chatDialogTrigger();
 			closeDialog();
 		});
 
+		//項目保存トリガー
 		dialogInfo.$saveBtn.click(function() {
 			$current.find('p').text(escape(dialogInfo.$msg.val()));
 			$current.find('.chat-date').text(dialogInfo.$date.val());
@@ -227,57 +224,18 @@ var app = {
 		});
 
 		dialogInfo.$close.click(closeDialog);
-	},
-
-	screenShotTrigger : function() {
-		$screenShotBtn.click(function() {
-			app.takeScreenShot();
-		});
-	},
-
-	takeScreenShot:  function() {
-    html2canvas(mobile.$screen).then(function(canvas) {
-        var imgData = canvas.toDataURL();
-				$screenShot.attr('src', imgData);
-    });
-	},
-
-	setRemaining : function() {
-		$remainingCount.text(TALK_MAXLEN - addedCount);
 	}
 
 };
 app.init();
 
-function getRandomTime() {
-	var d = new Date(parseInt(Math.random(0,100000000)*100000000));
-	return d.getHours() + ':' + ((d.getMinutes() < 10) ? '0' : '') + d.getMinutes();
+//残り追加可能人数設定
+function setRemaining() {
+	$remainingCount.text(TALK_MAXLEN - addedCount);
 }
 function openDialog() {
 	dialogInfo.$body.addClass('active');
 }
 function closeDialog() {
 	dialogInfo.$body.removeClass('active');
-}
-function escape(str) {
-  var escapeMap = {
-    '&': '&amp;',
-    "'": '&#x27;',
-    '`': '&#x60;',
-    '"': '&quot;',
-    '<': '&lt;',
-    '>': '&gt;'
-  };
-  var escapeReg = '[';
-  var reg;
-  for (var p in escapeMap)
-    if (escapeMap.hasOwnProperty(p)) escapeReg += p;
-
-  escapeReg += ']';
-  reg = new RegExp(escapeReg, 'g');
-
-  str = (str === null || str === undefined) ? '' : '' + str;
-  return str.replace(reg, function (match) {
-    return escapeMap[match];
-  });
 }
