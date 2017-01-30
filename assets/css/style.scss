@@ -5,7 +5,7 @@ $chatLineColor:#85e249;
 $baseFontSize:15px;
 
 body,html {
-	font-family:"游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-family:"Arial Rounded MT Bold", "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 	font-size: $baseFontSize;
 	margin:0;
 	padding:0;
@@ -135,15 +135,15 @@ a {
 input[type=text],
 input[type=time],
 textarea {
-	background-color:#eee;
+	background-color: #eee;
 	border-radius: 2px;
-	border-style:none;
+	border-style: none;
 	cursor: pointer;
 	font-family: inherit;
-	font-size: 1.25rem;
+	font-size: 1.1rem;
 	margin-left: 1rem;
 	outline: none;
-	padding: 5px;
+	padding: .5rem;
 }
 textarea {
 	font-size:.9rem;
@@ -248,18 +248,24 @@ h1 {
 	.screen-footer {
 		align-items: center;
 		background-color:#eef1f4;
+		background-size: cover;
 		bottom:0;
-		box-shadow:0 0 1px #888;
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		height:30px;
+		height:34.5px;
 		padding:6px 6px 6px 8px;
 		position: absolute;
 		width:100%;
 		&.screen-footer--chats {
 			height:35px;
 		}
+	}
+	&.screen--chats .screen-footer {
+		background-image:url('../image/chatsFooter.png');
+	}
+	&.screen--talk-history .screen-footer {
+		background-image:url('../image/historyFooter.png');
 	}
 	.mb-header-tp,
 	.mb-header-bt {
@@ -337,7 +343,7 @@ h1 {
 		border:1px solid #999;
 		border-radius:50%;
 		height:4px;
-		margin-top: -3px;
+		margin-top: 1px;
 		margin-right: auto;
 		margin-left: auto;
 		position: relative;

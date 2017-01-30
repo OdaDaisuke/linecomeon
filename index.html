@@ -30,12 +30,16 @@
 			<div id="edit-form" class="edit-form s12">
 				<form class="inner" method="get" action="#">
 					<p>
-						<span class="caption--form-element">相手の名前</span>
+						<span class="caption--form-element">*相手の名前</span>
 						<input type="text" name="opponent-name" id="opponent-name" maxlength="15" placeholder="15字以内">
 					</p>
 					<p>
-						<span class="caption--form-element">メッセージ</span>
+						<span class="caption--form-element">*メッセージ</span>
 						<input type="text" name="preview-msg" id="preview-msg" maxlength="20" placeholder="20字以内">
+					</p>
+					<p>
+						<span class="caption--form-element"> プロ画URL</span>
+						<input type="text" name="preview-profile" id="preview-profile" placeholder="URL" maxlength="512">
 					</p>
 					<p class="mb-2">
 						<span class="caption--form-element">　受信時刻</span>
@@ -87,11 +91,6 @@
 						<ul class="talk-lists"></ul>
 					</div>
 					<footer class="screen-footer screen-footer--chats">
-						<div class="inner">
-							<ul class="chats-icons">
-								<li><span class="ion-clock"></span></li>
-							</ul>
-						</div>
 					</footer>
 				</div>
 				<section id="screen-dump">

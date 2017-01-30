@@ -22,6 +22,7 @@ var mobile = {
 	$opponentName = $('#opponent-name'),
 	$previewMsg = $('#preview-msg'),
 	$previewDate = $('#preview-date'),
+	$previewProfile = $('#preview-profile'),
 	$owner = $('[name="chat-owner"]'),
 	$chatHistory = $('.chat-history'),
 	$talkList = $('.talk-lists'),
@@ -72,11 +73,18 @@ var app = {
 			var insertData = {
 					received : $previewDate.val(),
 					name : escape($opponentName.val()),
-					msg : escape($previewMsg.val())
+					msg : escape($previewMsg.val()),
+					profileURL : './assets/image/empty_room.png'
 				};
 
+			//プロフィール画像のURLが正気だったらそれを使う
+			if($previewProfile.val().length > 0 && isURL($previewProfile.val()))
+				insertData.profileURL = escape($previewProfile.val());
+
+			//フォーム入力チェック
 			if(insertData.name.length > 0 && insertData.msg.length > 0 && talksCount < TALK_MAXLEN) {
 
+				//受け取り時刻がランダムだったらランダム時刻代入
 				if($checkTimeRandom.prop('checked'))
 					insertData.received = getRandomTime();
 
@@ -85,7 +93,7 @@ var app = {
 						'<div class="inner">' +
 							'<div class="last-msg-arrived">' + insertData.received + '</div>' +
 							'<div class="profile-image">' +
-								'<img src="./assets/image/empty_room.png">' +
+								'<img src="' + insertData.profileURL + '">' +
 							'</div>' +
 							'<div class="talk-preview-wrap">' +
 								'<h4 class="talk-preview-from">' + insertData.name + '</h4>' +
@@ -96,7 +104,12 @@ var app = {
 
 				$opponentName.val('').focus();
 				$previewMsg.val('');
+				$previewProfile.val('');
+
+				//残り人数カウント
 				setRemaining(++addedCount);
+
+				//ダイアログトリガー更新
 				app.talkDialogTrigger();
 
 			} else if(talksCount >= TALK_MAXLEN)
