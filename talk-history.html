@@ -30,19 +30,23 @@
 			<div id="edit-form" class="edit-form chat-edit-form s12">
 				<form class="inner" method="get" action="#">
 					<p>
-						<span class="caption--form-element">相手の名前</span>
+						<span class="caption--form-element">*相手の名前</span>
 						<input type="text" name="opponent-name" id="opponent-name" maxlength="10" placeholder="10字以内" value="">
 					</p>
 					<p>
-						<span class="caption--form-element">送信した人</span>
+						<span class="caption--form-element">*送信した人</span>
 						<input type="radio" name="chat-owner" class="ml-1" value="prefer" id="check-chat-mine">
 						<label for="check-chat-mine">自分</label>
 						<input type="radio" name="chat-owner" class="" value="random" id="check-chat-opponent" checked>
 						<label for="check-chat-opponent">相手</label>
 					</p>
 					<p>
-						<span class="caption--form-element">メッセージ</span>
+						<span class="caption--form-element">*メッセージ</span>
 						<textarea name="preview-msg" id="preview-msg" maxlength="180" placeholder="180字以内"></textarea>
+					</p>
+					<p>
+						<span class="caption--form-element"> プロ画URL</span>
+						<input type="text" name="preview-profile" id="preview-profile" placeholder="URL" maxlength="512">
 					</p>
 					<p class="mb-2">
 						<span class="caption--form-element">　受信時刻</span>

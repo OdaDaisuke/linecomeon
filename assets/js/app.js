@@ -77,16 +77,16 @@ var app = {
 					profileURL : './assets/image/empty_room.png'
 				};
 
-			//プロフィール画像のURLが正気だったらそれを使う
-			if($previewProfile.val().length > 0 && isURL($previewProfile.val()))
-				insertData.profileURL = escape($previewProfile.val());
-
 			//フォーム入力チェック
 			if(insertData.name.length > 0 && insertData.msg.length > 0 && talksCount < TALK_MAXLEN) {
 
 				//受け取り時刻がランダムだったらランダム時刻代入
 				if($checkTimeRandom.prop('checked'))
 					insertData.received = getRandomTime();
+
+				//プロフィール画像のURLが正気だったらそれを使う
+				if($previewProfile.val().length > 0 && isURL($previewProfile.val()))
+					insertData.profileURL = escape($previewProfile.val());
 
 				$(
 					'<li class="talk-block">' +
@@ -133,22 +133,24 @@ var app = {
 				insertData = {
 					received : $previewDate.val(),
 					name : $opponentName.val(),
-					msg : escape($previewMsg.val())
+					msg : escape($previewMsg.val()),
+					profileURL : './assets/image/empty_room.png'
 				};
 
 			if(insertData.msg.length > 0) {
 
+				//受け取り時刻がランダムだったらランダム時刻代入
 				if($checkTimeRandom.prop('checked'))
 					insertData.received = getRandomTime();
 
+				//プロフィール画像のURLが正気だったらそれを使う
+				if($previewProfile.val().length > 0 && isURL($previewProfile.val()))
+					insertData.profileURL = escape($previewProfile.val());
+
 				// 自分が送信するメッセージだったら
 				if(!$checkOpponent.prop('checked')) {
-					$('<li class="chat-block mine">' +
-						'<div class="profile-wrap">' +
-							'<div class="profile-image">' +
-								'<img src="./assets/image/empty_room.png">' +
-							'</div>' +
-						'</div>' +
+
+					$chatHistory.append($('<li class="chat-block mine">' +
 						'<div class="chat-date"><span>' + insertData.received + "</span></div>" +
 						'<div class="chat-wrap">' +
 							'<div class="chat-balloon">' +
@@ -156,12 +158,14 @@ var app = {
 							'</div>' +
 						'</div>' +
 						'</li>'
-					).appendTo($chatHistory);
+					));
+
 				} else {
-					$('<li class="chat-block">' +
+
+					$chatHistory.append($('<li class="chat-block">' +
 							'<div class="profile-wrap">' +
 								'<div class="profile-image">' +
-									'<img src="./assets/image/empty_room.png">' +
+									'<img src="' + insertData.profileURL + '">' +
 								'</div>' +
 							'</div>' +
 							'<div class="chat-wrap">' +
@@ -171,8 +175,14 @@ var app = {
 							'</div>' +
 							'<div class="chat-date"><span>' + insertData.received + "</span></div>" +
 						'</li>'
-					).appendTo($chatHistory);
+					));
+
 				}
+
+				//プロ画セット
+				$('.profile-image').each(function() {
+					$(this).find('img').attr('src', insertData.profileURL);
+				});
 
 				$previewMsg.val('').focus();
 				app.chatDialogTrigger();
