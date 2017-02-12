@@ -8,6 +8,22 @@
 	<link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+	<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
 	<header class="common over-hidden">
 		<div class="header-top">
 			<div class="container">
@@ -68,6 +84,7 @@
 									<span class="ion-record"></span>
 									<span class="ion-record"></span>
 									<span class="ion-record"></span>
+									<span class="carrer">SoftBank</span>
 									<span class="ion-wifi"></span>
 								</div>
 								<div class="mobile-time"></div>
@@ -93,6 +110,9 @@
 					<footer class="screen-footer screen-footer--chats">
 					</footer>
 				</div>
+				<p class="text-center">
+					<a class="twitter-follow-button" href="https://twitter.com/hinodeya_pon"> Follow @hinodeya_pon</a>
+				</p>
 				<section id="screen-dump">
 					<img src="" alt="" id="screen-shot">
 				</section>
