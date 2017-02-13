@@ -239,9 +239,9 @@ h1 {
     .screen .screen-footer.screen-footer--chats {
       height: 35px; }
   .screen.screen--chats .screen-footer {
-    background-image: url("../image/chatsFooter.png"); }
+    background-image: url("../image/ChatsFooter.png"); }
   .screen.screen--talk-history .screen-footer {
-    background-image: url("../image/historyFooter.png"); }
+    background-image: url("../image/HistoryFooter.png"); }
   .screen .mb-header-tp,
   .screen .mb-header-bt {
     display: block;
